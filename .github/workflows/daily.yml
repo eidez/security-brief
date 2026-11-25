@@ -5,6 +5,12 @@ on:
     # UTC 00:00 = 北京时间 08:00
     - cron: "0 0 * * *"
   workflow_dispatch: {}
+  push:
+    branches: [main]
+    # 机器人回写 data/ 与 site/ 时不重复触发，避免自我循环
+    paths-ignore:
+      - "data/**"
+      - "site/**"
 
 permissions:
   contents: write   # 回写当日数据
@@ -43,6 +49,11 @@ jobs:
           git add data site
           git diff --staged --quiet || git commit -m "chore(brief): ${{ env.DATE }}"
           git push || echo "无可推送内容"
+
+      # 首次运行时自动启用 Pages（仓库 Settings → Pages 不用手点）
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
