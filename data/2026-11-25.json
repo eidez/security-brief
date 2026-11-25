@@ -1,6 +1,6 @@
 {
   "date": "2026-11-25",
-  "generated_at": "2026-11-25T16:55:34+08:00",
+  "generated_at": "2026-11-25T17:04:00+08:00",
   "papers": [
     {
       "id": "2611.30932v1",
@@ -152,6 +152,134 @@
       "url": "https://arxiv.org/abs/2611.31962v1",
       "source": "arXiv",
       "score": 11
+    }
+  ],
+  "papers_cs": [
+    {
+      "id": "2611.33067v1",
+      "title": "Making History-Independence-Preserving LL/SC Writable",
+      "abstract": "A randomized implementation of $m$ LL/SC objects for $n$ processes, with at most $k$ outstanding LL() operations each, uses $O(kn + m)$ CAS and FAID objects [Bencivenga, Habashi, and Woelfel, DISC 2026], achieves constant expected step complexity, and preserves quiescent history independence for algorithms such as [Hagit Attiya, Michael A. Bender, Martín Farach-Colton, Rotem Oshman, and Noa Schiller, STOC 2025]. Unlike some other LL/SC algorithms, such as [Anderson and Moir, WDAG 1995; Jayanti and Petrovic, PODC 2003; Jayanti, Jayanti, and Jayanti, DISC 2023; Hagit Attiya, Michael A. Bender, Martín Farach-Colton, Rotem Oshman, and Noa Schiller, PODC 2024], this algorithm does not support an unconditional write operation. We show how to add a (randomized) wait-free write operation without affecting the asymptotic step or space complexity of the implementation.",
+      "published": "2026-11-24",
+      "authors": [
+        "Dante Bencivenga",
+        "Philipp Woelfel"
+      ],
+      "categories": [
+        "cs.DS",
+        "cs.DC"
+      ],
+      "url": "https://arxiv.org/abs/2611.33067v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.33015v1",
+      "title": "PORTA: Systematic Discovery of Vulnerabilities in Identity Brokers",
+      "abstract": "Identity brokers such as Keycloak, Vault, and Dex translate authentication proofs from an upstream identity provider into sessions for downstream services. Due to their central role in authentication and trust mediation, a single vulnerability in a broker compromises every downstream service behind it. In fact, recent incidents have demonstrated that even widely adopted platforms are not immune to such issues, highlighting the critical need for systematic analysis. To build such an analysis, this work first defines invariants for broker operation. These invariants are not completely covered by existing authentication specifications, primarily because brokers are unique in their duality, i.e., acting simultaneously as a relying party and an identity provider. The invariants capture the properties that identity brokers must uphold throughout their workflows, as all 60 previous CVEs we consider violate at least one invariant. Within these workflows, we further define high-level action categories. Equipped with this information, our automated tool PORTA leverages a large language model (LLM) to generate API invocation sequences corresponding to the high-level action categories, and oracle assertions aligned with the specified invariants. PORTA identifies 33 previously unreported security vulnerabilities in seven popular open-source brokers. We study these novel vulnerabilities and trace them to eight recurring patterns. We responsibly disclosed all discovered vulnerabilities: 29 have been confirmed, 14 patched, and 19 assigned CVE numbers, with 10 CVEs rated as critical.",
+      "published": "2026-11-24",
+      "authors": [
+        "Zixu Zhou",
+        "Xiangyu Guo",
+        "Ilya Grishchenko",
+        "David Lie"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.SE"
+      ],
+      "url": "https://arxiv.org/abs/2611.33015v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.33074v1",
+      "title": "On the Creation of Object-Centric Event Logs from Patient Journeys",
+      "abstract": "Interactions between patients and health systems as well as conditions that individuals experience during a disease are represented in patient journeys. Therefore, patient journeys are important assets to investigate how care is being provided, and how health systems can be designed to better suit the needs of patients. While there is initial work on patient journeys from a process mining perspective with traditional case notions, object-centric process mining techniques have yet to be covered. This is unfortunate, since due to the rich structure of objects and their relationships, object-centric process mining approaches are particularly promising in this context. This paper addresses this gap by investigating object-centric event log (OCEL) generation from patient journeys. Based on a list of challenges and requirements, the paper presents an approach for the creation of OCELs from patient journey data. The approach is evaluated on a synthetic patient cohort provided by our industry partner.",
+      "published": "2026-11-24",
+      "authors": [
+        "Saimir Bala",
+        "Neven Borak",
+        "Maximilian König",
+        "Anjo Seidel",
+        "Zeinab Soleimani",
+        "Lorenzo Famiglini"
+      ],
+      "categories": [
+        "cs.DB",
+        "cs.AI"
+      ],
+      "url": "https://arxiv.org/abs/2611.33074v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.32852v1",
+      "title": "Leveraging Persistent Field-of-View and Multipath Segment Routing for Traffic Engineering in LEO Satellite Constellations",
+      "abstract": "The emergence of low earth orbit (LEO) satellite constellations poses fundamental challenges for traditional rout- ing paradigms due to high node mobility, frequent topology changes, and constrained on-board resources. This paper pro- poses a segment routing (SR) framework that offloads route computation and control signaling from resource-constrained LEO switches to more powerful medium earth orbit (MEO) con- trollers. We first establish sufficient conditions for the persistence of user-to-satellite and LEO-to-MEO field-of-view (FoV) con- nectivity throughout a virtual topology (VT) snapshot interval, enabling handover-free operation. Leveraging this persistence, we formulate the MEO control domain partitioning problem as a mixed-integer linear program (MILP) to minimize control over- head while assigning disjoint segment routing domains (SRDs) to MEO controllers. Within each SRD, we develop a multipath SR- based traffic engineering (SR-TE) formulation that splits traffic among four minimum-hop-count path types to minimize maxi- mum link utilization. We solve this linear program (LP) using a distributed primal-dual hybrid gradient (PDHG) approach that preserves SRD-level privacy and requires only AllReduce communication. Simulations on the Starlink/GPS combination demonstrate our approach reduces maximum link utilization by more than 13.09%, 11.84%, and 12.50%, respectively, com- pared to traditional minimum hop count routing (MHCR) and traffic-oblivious load-balancing methods for Starlink, Kuiper, and OneWeb.",
+      "published": "2026-11-24",
+      "authors": [
+        "Kai Wang",
+        "Chee Wei Tan"
+      ],
+      "categories": [
+        "cs.NI"
+      ],
+      "url": "https://arxiv.org/abs/2611.32852v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.32908v1",
+      "title": "KuroANN: Avoiding Unnecessary SSD Reads in High-Recall Filtered Vector Search",
+      "abstract": "We present KuroANN, a new on-SSD filtered vector search system for partition indexes. Existing solutions assign the same number of SSD reads to all queries within a given selectivity range, wasting I/O for many queries. KuroANN instead assigns each query's SSD reads based on the number of vectors that pass its filter, called its match count. This is based on our observation that the match count is known before the search and that the number of SSD reads a query requires depends on this match count. KuroANN measures offline how many partitions to probe and candidates to read for the target recall at each count. At runtime, a query looks up these numbers, filters only the probed partitions, and stops reading from the SSD when further reads are unlikely to help. This significantly avoids unnecessary SSD reads and filtering work, improving throughput and latency at high recall. Experimental results show that KuroANN outperforms PipeANN-Filter and Faiss by up to 34.5x and 9.10x, respectively.",
+      "published": "2026-11-24",
+      "authors": [
+        "Soobin Cho",
+        "Nakyung Lee",
+        "Jiwoong Park",
+        "Gyuyeong Kim"
+      ],
+      "categories": [
+        "cs.OS",
+        "cs.DB"
+      ],
+      "url": "https://arxiv.org/abs/2611.32908v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.32920v1",
+      "title": "Increasing the Precision of IR Mapping for Incremental Data Analysis",
+      "abstract": "Static analysis tools operate on an Intermediate Representation (IR) --- an internal model of the program on which dataflow analysis computes and stores facts against IR object identifiers. Incremental dataflow analysis reuses these cached facts across consecutive program versions, but requires an accurate mapping between IR objects in the old and new versions. When this mapping is imprecise, the consequence is not merely a missed optimization: unmapped IR objects inflate the change set, increasing the number of program points that the analyzer must recompute and forcing it to redo work that a more precise mapping would have avoided. This cost is not specific to any one kind of IR object; it arises wherever IR-level identity is unstable across versions. Any IR that decomposes nested source expressions generates temporary variables which are assigned names by a method-local counter that shifts whenever a statement is inserted or deleted earlier in the method, breaking any name- or attribute-based mapping. We present a systematic algorithm that establishes a sound, oneto-one mapping of these temporary variables across consecutive versions, and formalize and prove the soundness of the mapping, guaranteeing that every produced mapping is semantically correct. The resulting precise mapping shrinks the change set, reducing the number of program points the incremental analysis must recompute. Implemented within the Soot framework for Jimple IR and evaluated on 8 real-world Java projects with genuine edits from the BUGSWARM dataset, our approach reduces the IR change set by over 82% on average compared to Reviser's graph-differencing algorithm, while completing the full pipeline within 250 ms per project---directly countering the common assumption that a more precise change set necessarily costs more time to compute.",
+      "published": "2026-11-24",
+      "authors": [
+        "Anushri Jana",
+        "Kush Goradiya",
+        "Uday P Khedker"
+      ],
+      "categories": [
+        "cs.PL"
+      ],
+      "url": "https://arxiv.org/abs/2611.32920v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.33106v1",
+      "title": "Temporal Conditioning for Human Behavioral Cloning in Chess",
+      "abstract": "Behavioral cloning models in chess typically predict human moves from board states while ignoring temporal inputs such as the remaining clock. However, time pressure is a major determinant of human decision-making quality, and temporal state is a missing dimension of human behavioral modeling. This paper introduces a time-aware transformer that extends a Chessformer-style architecture with learned temporal conditioning tokens encoding player clock state, time control, and recent tempo, together with behavioral heads for thinking time and resignation. The model is trained on large-scale online chess data and evaluated against time-agnostic baselines and the state of the art. Results show that temporal conditioning yields modest overall accuracy improvements but substantially stronger gains under time pressure. Beyond move choice, it also produces more accurate thinking-time and resignation predictions. More importantly, the model better matches human move-quality degradation in critical time regimes, reducing the systematic over-strength observed in time-agnostic behavioral cloning models. These results suggest that temporal state is a previously underutilized but important signal for human behavioral cloning in chess.",
+      "published": "2026-11-24",
+      "authors": [
+        "Victor Dziwniel",
+        "Tianxiang Lu"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.HC"
+      ],
+      "url": "https://arxiv.org/abs/2611.33106v1",
+      "source": "arXiv",
+      "score": 0
     }
   ],
   "kev": [

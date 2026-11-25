@@ -149,6 +149,34 @@ def fetch_arxiv(cfg: dict) -> list[dict]:
     return ranked[: acfg["top_n"]]
 
 
+def fetch_arxiv_cs(cfg: dict) -> list[dict]:
+    """计算机科学方向：每个子领域取最新一篇，保证覆盖面而不是被某一方向刷屏。
+
+    这里刻意不做关键词筛选——通用 CS 没有统一的相关性关键词，
+    强行筛只会筛出偏见；改为「每个子方向取最新 1 篇」，让判断层来决定读哪篇。
+    """
+    ccfg = cfg["cs"]
+    picked, seen = [], set()
+    for cat in ccfg["categories"]:
+        try:
+            batch = arxiv_query(f"cat:{cat}", ccfg["per_category"])
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! {cat} 抓取失败：{e}", file=sys.stderr)
+            continue
+        taken = 0
+        for p in batch:
+            if p["id"] in seen:
+                continue
+            seen.add(p["id"])
+            p["score"] = 0
+            picked.append(p)
+            taken += 1
+            if taken >= ccfg["per_category_take"]:
+                break
+    picked.sort(key=lambda x: x["published"], reverse=True)
+    return picked[: ccfg["top_n"]]
+
+
 # --------------------------------------------------------------------------
 # 2. 在野利用：CISA KEV
 # --------------------------------------------------------------------------
@@ -292,16 +320,19 @@ def fetch_rss(cfg: dict) -> list[dict]:
 def cmd_fetch(date: str) -> None:
     cfg = load_config()
     DATA.mkdir(exist_ok=True)
-    print(f"[1/4] arXiv（{'/'.join(cfg['arxiv']['categories'])}）…")
+    print(f"[1/5] arXiv（{'/'.join(cfg['arxiv']['categories'])}）…")
     papers = fetch_arxiv(cfg)
     print(f"      {len(papers)} 篇入选")
-    print("[2/4] CISA KEV 在野利用清单…")
+    print(f"[2/5] 计算机科学方向（{'/'.join(cfg['cs']['categories'])}）…")
+    papers_cs = fetch_arxiv_cs(cfg)
+    print(f"      {len(papers_cs)} 篇入选")
+    print("[3/5] CISA KEV 在野利用清单…")
     kev = fetch_kev(cfg)
     print(f"      {len(kev)} 条")
-    print("[3/4] NVD 新增高危 CVE…")
+    print("[4/5] NVD 新增高危 CVE…")
     nvd = fetch_nvd(cfg)
     print(f"      {len(nvd)} 条")
-    print("[4/4] RSS 安全资讯…")
+    print("[5/5] RSS 安全资讯…")
     news = fetch_rss(cfg)
     print(f"      {len(news)} 条")
 
@@ -309,6 +340,7 @@ def cmd_fetch(date: str) -> None:
         "date": date,
         "generated_at": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
         "papers": papers,
+        "papers_cs": papers_cs,
         "kev": kev,
         "nvd": nvd,
         "news": news,
@@ -387,7 +419,7 @@ def render_html(payload: dict, summ: dict, archive: list[str]) -> str:
         parts.append('<ul class="trends">' + "".join(f"<li>{esc(x)}</li>" for x in overview) + "</ul>")
 
     # 学术前沿
-    parts.append('<h2><span class="num">02</span>学术前沿</h2>')
+    parts.append('<h2><span class="num">02</span>网络安全前沿</h2>')
     parts.append('<p class="lead">arXiv <code>cs.CR</code> 与 AI 安全交叉方向，按关键词相关度排序后人工/智能体复筛。</p>')
     for p in papers:
         s = ps.get(p["id"], {})
@@ -404,9 +436,30 @@ def render_html(payload: dict, summ: dict, archive: list[str]) -> str:
   {f'<div class="why"><b>为什么值得看：</b>{esc(why)}</div>' if why else ''}
 </div>""")
 
+    # 计算机科学前沿
+    papers_cs = payload.get("papers_cs", [])
+    if papers_cs:
+        parts.append('<h2><span class="num">03</span>计算机科学前沿</h2>')
+        parts.append('<p class="lead">cs.DC / SE / DB / NI / OS / PL / HC 七个方向各取最新一篇，'
+                     '避免单一子领域刷屏。</p>')
+        for p in papers_cs:
+            s2 = ps.get(p["id"], {})
+            tldr = s2.get("tldr") or (p["abstract"][:160] + "…")
+            why = s2.get("why") or ""
+            tags = "".join(f'<span class="tag">{esc(c)}</span>' for c in p.get("categories", [])[:3])
+            authors = ", ".join(p.get("authors", [])[:3])
+            if len(p.get("authors", [])) > 3:
+                authors += " 等"
+            parts.append(f"""<div class="item">
+  <h3><a href="{esc(p['url'])}">{esc(p['title'])}</a></h3>
+  <p class="byline">{tags}{esc(authors)} ｜ {esc(p['published'])} ｜ arXiv:{esc(p['id'])}</p>
+  <p class="tldr">{esc(tldr)}</p>
+  {f'<div class="why"><b>为什么值得看：</b>{esc(why)}</div>' if why else ''}
+</div>""")
+
     # 在野利用
     if kev:
-        parts.append('<h2><span class="num">03</span>在野利用（CISA KEV）</h2>')
+        parts.append('<h2><span class="num">04</span>在野利用（CISA KEV）</h2>')
         parts.append('<p class="lead">已被确认在真实攻击中使用过的漏洞。这是"今晚就动手"优先级最高的信号。</p>')
         parts.append("<table><tr><th>CVE</th><th>厂商 / 产品</th><th>名称</th><th>入库</th><th>勒索利用</th></tr>")
         for k in kev:
@@ -419,7 +472,7 @@ def render_html(payload: dict, summ: dict, archive: list[str]) -> str:
 
     # 高危新增
     if nvd:
-        parts.append('<h2><span class="num">04</span>新增高危漏洞（NVD）</h2>')
+        parts.append('<h2><span class="num">05</span>新增高危漏洞（NVD）</h2>')
         parts.append('<p class="lead">过去 24 小时内公开的 Critical 级漏洞。</p>')
         parts.append("<table><tr><th>CVE</th><th>CVSS</th><th>摘要</th></tr>")
         for v in nvd:
@@ -438,7 +491,7 @@ def render_html(payload: dict, summ: dict, archive: list[str]) -> str:
 
     # 行业动态
     if news:
-        parts.append('<h2><span class="num">05</span>行业动态</h2>')
+        parts.append('<h2><span class="num">06</span>行业动态</h2>')
         parts.append("<table><tr><th>标题</th><th>来源</th></tr>")
         for n in news:
             parts.append(
@@ -450,7 +503,7 @@ def render_html(payload: dict, summ: dict, archive: list[str]) -> str:
     # 趋势
     trends = summ.get("trends") or []
     if trends:
-        parts.append('<h2><span class="num">06</span>趋势观察</h2>')
+        parts.append('<h2><span class="num">07</span>趋势观察</h2>')
         parts.append('<p class="lead">跨条目的二次提炼：今天这一批放在一起说明了什么。</p>')
         parts.append('<ul class="trends">' + "".join(f"<li>{esc(t)}</li>" for t in trends) + "</ul>")
 
@@ -479,7 +532,7 @@ def render_md(payload: dict, summ: dict) -> str:
         L.append("## 一、今日速览")
         L += [f"- {x}" for x in summ["overview"]]
         L.append("")
-    L.append("## 二、学术前沿")
+    L.append("## 二、网络安全前沿")
     L.append("")
     for p in payload["papers"]:
         s = ps.get(p["id"], {})
@@ -490,8 +543,20 @@ def render_md(payload: dict, summ: dict) -> str:
         if s.get("why"):
             L.append(f"- 为什么值得看：{s['why']}")
         L.append("")
+    if payload.get("papers_cs"):
+        L.append("## 三、计算机科学前沿")
+        L.append("")
+        for p in payload["papers_cs"]:
+            s2 = ps.get(p["id"], {})
+            L.append(f"### {p['title']}")
+            L.append(f"- 作者：{', '.join(p['authors'][:4])}")
+            L.append(f"- 分类：{', '.join(p['categories'][:3])}　｜　{p['published']}　｜　[原文]({p['url']})")
+            L.append(f"- 一句话结论：{s2.get('tldr') or p['abstract'][:160]}")
+            if s2.get("why"):
+                L.append(f"- 为什么值得看：{s2['why']}")
+            L.append("")
     if payload["kev"]:
-        L.append("## 三、在野利用（CISA KEV）")
+        L.append("## 四、在野利用（CISA KEV）")
         L.append("")
         L.append("| CVE | 厂商 / 产品 | 名称 | 入库 | 勒索利用 |")
         L.append("|---|---|---|---|---|")
@@ -499,7 +564,7 @@ def render_md(payload: dict, summ: dict) -> str:
             L.append(f"| {k['cve']} | {k['vendor']} / {k['product']} | {k['name']} | {k['added']} | {k['ransomware']} |")
         L.append("")
     if payload["nvd"]:
-        L.append("## 四、新增高危漏洞（NVD）")
+        L.append("## 五、新增高危漏洞（NVD）")
         L.append("")
         L.append("| CVE | CVSS | 摘要 |")
         L.append("|---|---|---|")
@@ -507,13 +572,13 @@ def render_md(payload: dict, summ: dict) -> str:
             L.append(f"| {v['cve']} | {v['score']} | {v['desc'][:150]} |")
         L.append("")
     if payload["news"]:
-        L.append("## 五、行业动态")
+        L.append("## 六、行业动态")
         L.append("")
         for n in payload["news"]:
             L.append(f"- [{n['title']}]({n['url']}) —— {n['feed']}")
         L.append("")
     if summ.get("trends"):
-        L.append("## 六、趋势观察")
+        L.append("## 七、趋势观察")
         L += [f"- {t}" for t in summ["trends"]]
         L.append("")
     if summ.get("selfcheck"):
