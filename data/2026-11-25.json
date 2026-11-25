@@ -1,0 +1,440 @@
+{
+  "date": "2026-11-25",
+  "generated_at": "2026-11-25T16:29:39+08:00",
+  "papers": [
+    {
+      "id": "2611.30932v1",
+      "title": "Carried-Over and Agent-Native Threats in the Supply Chain of LLM Agent Skills",
+      "abstract": "Agent skills are reusable packages that extend a large language model (LLM) agent with scripts, third-party dependencies, and natural-language instructions. An agent builds a skill's arguments from user requests and untrusted external content, so a flaw left by a benign author can escalate a prompt injection to code execution. Existing studies target malicious skills or a single attack vector, and none tests whether an agent can reach such flaws. We present the first registry-scale empirical study of the supply chain attack surface arising from unintentional vulnerabilities in agent skills, over all 48,682 skills in ClawHub. The study covers two carried-over risks, dependencies and first-party code, and two agent-native ones, install instructions and credentials printed to stdout. We screen all skills by static analysis, manually review all 3,428 cases flagged by the four main detectors, and test reachability by running sampled flagged skills in a sandbox and with a live LLM agent under indirect prompt injection. First, dependency risk carries over in a different form: 49.6% of the skills with resolvable dependencies depend on a version with a known CVE, and unlike npm packages, which mostly become vulnerable after release, 78.3% of them are born vulnerable, already exposed at publication. Second, few of these CVEs are reachable: agent input reaches the vulnerable function in only 3.0% of the affected skills, whereas 21 of 22 sampled first-party flaws are exploited end to end in the sandbox. Third, a live agent executes the injected payload in 48.5% of the sampled flagged skills, but almost always in its own shell before the skill runs, and the payload reaches a flaw in the skill itself in only 5.0%. Hence, registries should prioritize first-party flaws over dependency alerts, and agent runtimes should not pass skill arguments through a shell.",
+      "published": "2026-11-23",
+      "authors": [
+        "Kaixuan Li",
+        "Wenbo Guo",
+        "Sen Chen",
+        "Yang Liu"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.SE"
+      ],
+      "url": "https://arxiv.org/abs/2611.30932v1",
+      "source": "arXiv",
+      "score": 15
+    },
+    {
+      "id": "2611.33030v1",
+      "title": "SALSA: Sampling Adversarial Suffixes from Learned Distributions for LLM Safety Assessment",
+      "abstract": "Large language models (LLMs) remain vulnerable to jailbreak attacks, where adversaries append optimized suffixes to otherwise benign looking prompts to bypass safety alignment. Existing optimization-based GCG-style attacks can be effective, but they are expensive at inference time, and suffer from poor transfer. We present, SALSA, a generative framework that learns a distribution over jailbreak suffixes from optimization-derived attack corpora. Once trained, the model supports efficient sampling-based attacks. On open-source targets, it achieves attack success rates comparable to state-of-the-art optimization baselines, while reducing generation time from 3.46s to 0.04s per prompt. In black-box transfer, it remains highly effective against proprietary systems, including 99% ASR on GPT-3.5-Turbo, and reaches 45% ASR on the substantially harder GPT-4o, more than doubling the strongest baseline at an equal sampling budget. We further offer an intuition for why generative sampling can preserve high attack success, when the learned suffix distribution is close to the distribution of optimization outputs. Overall, our results show that learning adversarial suffix distributions yields a scalable, and practically efficient foundation for continuous LLM vulnerability discovery.",
+      "published": "2026-11-24",
+      "authors": [
+        "Shivank Rajput",
+        "Himanshu Singh",
+        "A. V. Subramanyam"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.CR"
+      ],
+      "url": "https://arxiv.org/abs/2611.33030v1",
+      "source": "arXiv",
+      "score": 15
+    },
+    {
+      "id": "2611.31791v1",
+      "title": "SwarmLeak: Does Coordination Improve Privacy Attacks on LLM Agents?",
+      "abstract": "LLM agents increasingly collaborate in group chats while holding tool access to confidential records, which makes the shared chat an attack surface. It remains unclear whether several colluding attackers extract such information more effectively than one. We introduce SwarmLeak, a red-teaming dataset of 24 synthetic group-chat scenarios across healthcare, law, finance, and software engineering, where attackers pose as colleagues to make a victim agent post protected fields despite an explicit confidentiality policy. With GLM 5.2 attacking five victim models through seven conversational strategies, we compare one attacker with a swarm of four sharing a private channel, matching scenarios, strategies, and a 200,000-token budget that also covers swarm coordination. Swarms show no advantage: a single attacker matches or exceeds them on every victim, and the share of runs leaking any field differs between conditions by at most 14.3 percentage points, whereas changing the victim shifts it from 0% to 99.4%. On the two most vulnerable models, nearly every run leaks under both conditions, but single attackers expose more of the record at first disclosure (85.4% vs. 68.1% of protected fields on Nemotron 3.5 Lightning). Four of the five victims leaked despite the policy. GLM 5.2 retrieved protected data in 64.3% of individual-attack runs and leaked in 0.6%: retrieval does not imply disclosure, but in high-stakes settings even one leaked field can identify a patient or client. At equal budgets, a larger red team is not automatically a stronger one; the victim model matters far more.",
+      "published": "2026-11-24",
+      "authors": [
+        "Asma Farajidizaji",
+        "Vyas Raina",
+        "Vatsal Raina",
+        "Ivaxi Sheth"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.CL"
+      ],
+      "url": "https://arxiv.org/abs/2611.31791v1",
+      "source": "arXiv",
+      "score": 15
+    },
+    {
+      "id": "2611.31338v1",
+      "title": "Per-Attack Blocking Hides Catalog Vulnerability: A Weakest-Link Analysis of Tool Manifests",
+      "abstract": "Runtime controls for tool-using agents depend on manifests that state what each tool may read and where its output may go. Evaluations of these controls, including ChainCaps, report per-attack blocking: the share of attacks a set of manifests stops. We show that this is the wrong unit. A catalog is only as safe as its weakest source policy: if $M$ independently authored policies are each wrong with probability $p$, the chance that the catalog contains an accepted exfiltration path is $1-(1-p)^M$, while per-attack blocking stays at $1-p$. Three lines of evidence agree. In synthetic catalogs run through two enforcement engines, ChainCaps and OpenAPPA, per-attack blocking holds at 92% while catalog vulnerability rises from 22% at 10 tools to 99% at 200, and composition provides no protective effect. A fifteen-model authoring pilot shows that real errors cluster by author, so a 200-tool catalog behaves like about 5 independent decisions rather than 60 (95% interval 3.4 to 9.2). On 114 real MCP tools with expert-written rules, the models' own manifests block 89% of attacks yet leave 9 of 15 catalogs open, as the author-effect model predicts and independence does not. Evaluations should report catalog vulnerability, the sink coverage of their tests, and an effective number of independent decisions alongside per-attack blocking.",
+      "published": "2026-11-23",
+      "authors": [
+        "Karthik Karunanithi"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "url": "https://arxiv.org/abs/2611.31338v1",
+      "source": "arXiv",
+      "score": 12
+    },
+    {
+      "id": "2611.30590v1",
+      "title": "POMA: Beyond Final Flags -- Process-Level Evaluation of Base LLMs in Vulnerability Exploitation",
+      "abstract": "As large language models (LLMs) evolve from text generation to autonomous software-engineering execution, automated vulnerability exploitability verification has emerged as a vital frontier in software quality assurance and security validation. Existing security benchmarks, however, largely judge models by binary pass/fail outcomes or coarse stage milestones. Such outcome-centric scoring obscures fine-grained failure dynamics across long-horizon execution and conflates the intrinsic capability of a base LLM with external agent scaffolding. We present POMA (Pwn-Oriented Model Assessment), a process-level evaluation methodology and platform that isolates base LLMs under a unified execution baseline -- fixing task inputs, tool interfaces, target environments, feedback formats, and execution budgets -- while measuring intermediate states and transitions from runtime evidence. Evaluating four frontier base LLMs across 55 CTF Pwn challenges and 10 real-world vulnerability reproduction tasks exposes persistent capability attrition along the exploitation chain: from vulnerability knowledge to executable implementation, from client-side actions to verified target states, from failure localization to precise repair, and across iterative revisions. In real-world software, models further struggle to satisfy format, semantic, differential, and crash-identity constraints simultaneously. By pinpointing where execution chains break down, POMA provides an empirical foundation for trustworthy capability assessment and principled vulnerability-agent design. Our benchmark catalogs, process-measurement evaluator, and sample harness are publicly available at https://github.com/maple-pwn/poma-release .",
+      "published": "2026-11-23",
+      "authors": [
+        "Gufeng Zhang",
+        "Yiru Zhao",
+        "Shengyu Liu",
+        "Weichen Yan",
+        "Xingwang Xiang",
+        "Yiran Ma"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.SE"
+      ],
+      "url": "https://arxiv.org/abs/2611.30590v1",
+      "source": "arXiv",
+      "score": 12
+    },
+    {
+      "id": "2611.31547v1",
+      "title": "Aftershock: Yesterday's Linux Kernel Bugs, Tomorrow's Android Exploits",
+      "abstract": "Android kernels have long suffered from slow patch propagation from Linux upstream, with fixes often reaching devices far later than conventional Linux distributions. Until recently, this lag was largely a patch-management problem. With rapidly improving LLM agents, it is becoming an exploitation problem: public upstream patches can now serve as blueprints for building working n-day exploits before downstream devices are fixed. We test this threat end to end by building an automated pipeline that screens upstream Linux patches, reproduces memory-safety vulnerabilities on Android targets, and drives an LLM agent to construct local privilege escalation exploits from an untrusted application. Across 152 candidate CVEs reported over 33 months, we reproduce 38 vulnerabilities and generate 17 independently verified exploits under production defenses. Exploitation takes a median of 14.3 agent-hours and $321 in API cost, with 90% median reliability; 12 of 14 trials succeed on Pixel 9 and Pixel 10 devices. Notably, the pipeline relies only on publicly available, off-the-shelf models. Surprisingly, only 3 of the 17 exploited CVEs appear in Android Security Bulletins, suggesting limited visibility into which upstream fixes address vulnerabilities that affect Android kernels. For these 17 CVEs, the corresponding upstream patches reach Pixel devices with a median delay of 181 days. Together, these results reveal a stark asymmetry: attackers can increasingly automate exploitation in hours, while defenders still identify and deploy fixes on the timescale of months.",
+      "published": "2026-11-23",
+      "authors": [
+        "Kareem Shehada",
+        "Zhiyun Qian"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.OS"
+      ],
+      "url": "https://arxiv.org/abs/2611.31547v1",
+      "source": "arXiv",
+      "score": 11
+    },
+    {
+      "id": "2611.31129v1",
+      "title": "FATCAT: Fault Injection Attacks Targeting Chip-level Alignment",
+      "abstract": "Model alignment is the primary safety and security mechanism for enforcing refusal of malicious prompts in modern foundation models; yet, existing adversarial evaluations implicitly assume underlying hardware integrity. In this paper, we present FATCAT, the first physical fault-injection attacks capable of eliminating refusal in modern large language and vision-language models. Specifically, we present a non-invasive electromagnetic (EM) fault injection attack targeting GPU-accelerated Systems-on-Chip with physical access, requiring neither software execution privileges nor model-layer access. By leveraging an autonomous Radio Frequency (RF) side-channel trigger to synchronize EM faults to the prompt prefill phase, the attack corrupts safety-critical memory transactions across off-chip LPDDR5 DRAM and on-chip LPDDR physical interfaces without crashing the system while preserving model coherence. Evaluated on an NVIDIA Jetson Orin Nano and AGX Thor running Llama 3.2 1B and Gemma 3 1B, localized physical faults reliably force models to fulfill restricted requests, demonstrating that model-level alignment provides no robust security guarantees without hardware-level fault tolerance. Finally, we demonstrate the physical-world consequences of this vulnerability on an active 6-DoF robotic manipulator controlled by a SmolVLA vision-language-action policy. Our attack silently corrupts the model forcing the arm into abrupt, hazardous lunges; in two instances the robotic arm attempted to pinch the paper author -- proving that hardware faults can directly translate into real physical harm.",
+      "published": "2026-11-23",
+      "authors": [
+        "Peter Horvath",
+        "Ilia Shumailov",
+        "Zhuoran Liu",
+        "Lukasz Chmielewski",
+        "Lejla Batina"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "url": "https://arxiv.org/abs/2611.31129v1",
+      "source": "arXiv",
+      "score": 11
+    },
+    {
+      "id": "2611.31962v1",
+      "title": "Are Web Agents Still Detectable? Stress-Testing Bot Defenses with Coordinated Evasion",
+      "abstract": "AI web agents can autonomously navigate websites and complete various tasks. As their capabilities and adoption expand, evaluating bot defenses requires adversarial stress tests. Although prior work demonstrates that existing agents can remain detectable, it remains unclear how effective bot defenses are against adversaries that coordinate evasion across browser fingerprints, automation controls, and interaction behavior. To investigate this threat, we introduce DarkAgent, an autonomous web agent that combines a forked Chromium browser that conceals automation artifacts and generative models that produce human-like mouse and keyboard traces. To address the limitations of existing keyboard mimickers, our keyboard model jointly generates realistic key events and their timings while reliably reproducing the target text. Released agent detectors accept our generated behavior as human, and trained classifiers find it substantially harder to distinguish from human traces than existing mimickers. DarkAgent achieves an 89% page-access bypass rate across a third-party stealth benchmark, exceeding the strongest published baseline by 12 percentage points. To further enhance the measurement of agents, we introduce a benchmark that measures browser fingerprints, interaction behavior, and network activity to assess each channel's contribution to detecting adversarial agents such as DarkAgent. On this benchmark, browser and behavioral modifications are complementary: either alone remains detectable, and only their combination evades all tested checks. Together, our findings expose the gap between passing existing bot defenses and reproducing human behavior, and point to timing between actions as a remaining signal for defenders.",
+      "published": "2026-11-24",
+      "authors": [
+        "Parsa Nilforushan",
+        "Gemmin Sugiura",
+        "Kourosh Hashemi",
+        "Peiman Zhiani",
+        "Mohammad A. Tayebi"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "url": "https://arxiv.org/abs/2611.31962v1",
+      "source": "arXiv",
+      "score": 11
+    }
+  ],
+  "kev": [
+    {
+      "cve": "CVE-2026-132224",
+      "vendor": "Optimizely",
+      "product": "Web Experimentation",
+      "name": "Optimizely Web Experimentation External Control of Critical State Data Vulnerability",
+      "added": "2026-11-24",
+      "ransomware": "Unknown",
+      "desc": "Optimizely Web Experimentation contains an external control of critical state data vulnerability in its account signup flow that could allow an attacker to impersonate existing customer users and modify Project JavaScript. Successful exploitation can result in attacker-controlled JavaScript being distributed through Optimizely-hosted assets and executed in browsers visiting affected customer websites.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-132224",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-131914",
+      "vendor": "Idunno",
+      "product": "AntiCsrf",
+      "name": "Idunno AntiCsrf Deserialization of Untrusted Data Vulnerability",
+      "added": "2026-11-24",
+      "ransomware": "Unknown",
+      "desc": "Idunno AntiCsrf contains a deserialization of untrusted data vulnerability that allows an unauthenticated remote attacker to execute arbitrary code via object injection. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-131914",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-132165",
+      "vendor": "Drupal",
+      "product": "Core",
+      "name": "Drupal Core Remote Code Execution Vulnerability",
+      "added": "2026-11-24",
+      "ransomware": "Unknown",
+      "desc": "Drupal Core contains a not failing securely vulnerability that could allow an unauthenticated attacker to take over an existing site or execute arbitrary code via the Drupal installer. Under specific conditions, the attacker can use install.php to attempt to reinstall Drupal on the site.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-132165",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-133968",
+      "vendor": "Project MONAI",
+      "product": "MONAI Label",
+      "name": "Project MONAI MONAI Label Path Traversal Vulnerability",
+      "added": "2026-11-23",
+      "ransomware": "Unknown",
+      "desc": "Project MONAI MONAI Label contains a path traversal vulnerability that allows an unauthenticated remote attacker to write arbitrary files outside the intended datastore directory, potentially resulting in remote code execution.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-133968",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-134624",
+      "vendor": "N-able",
+      "product": "MailAssure",
+      "name": "N-able MailAssure (SpamExperts) Server-Side Request Forgery (SSRF) Vulnerability",
+      "added": "2026-11-23",
+      "ransomware": "Unknown",
+      "desc": "N-able MailAssure (SpamExperts) contains a server-side request forgery vulnerability in the LDAP synchronization connection check that allows an authenticated API user to connect to arbitrary internal hosts and ports, determine which are reachable, and send crafted data to internal services.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-134624",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-129448",
+      "vendor": "Apache",
+      "product": "Roller",
+      "name": "Apache Roller Deserialization of Untrusted Data Vulnerability",
+      "added": "2026-11-20",
+      "ransomware": "Unknown",
+      "desc": "Apache Roller contains a deserialization of untrusted data vulnerability that allows an unauthenticated remote attacker to execute arbitrary code via the XML-RPC endpoint, which accepts and deserializes vendor extension types before authentication. This CVE covers the same underlying vulnerability as CVE-2026-82384 but applies to a broader range of affected versions.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-129448",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-123890",
+      "vendor": "Broadcom",
+      "product": "VMware vCenter",
+      "name": "VMWare vCenter Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+      "added": "2026-11-20",
+      "ransomware": "Unknown",
+      "desc": "Broadcom VMware vCenter contains an authentication bypass using an alternate path or channel vulnerability in the VMware Directory Service that allows an unauthenticated attacker with network access to vCenter to bypass authentication and gain unauthorized access to the system.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123890",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2025-42884",
+      "vendor": "SAP",
+      "product": "NetWeaver",
+      "name": "SAP NetWeaver Improper Neutralization of Special Elements in Data Query Logic Vulnerability",
+      "added": "2026-11-20",
+      "ransomware": "Unknown",
+      "desc": "SAP NetWeaver Enterprise Portal contains an improper neutralization of special elements in data query logic vulnerability that allows an unauthenticated attacker to disclose or modify server information via injected JNDI environment properties or a URL used during JNDI lookup operations.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-42884",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-76466",
+      "vendor": "Cisco",
+      "product": "Expressway Series",
+      "name": "Cisco Expressway Series Use of Hard-coded Credentials Vulnerability",
+      "added": "2026-11-20",
+      "ransomware": "Unknown",
+      "desc": "Cisco Expressway Series contains a use of hard-coded credentials vulnerability that allows an unauthenticated, remote attacker with persistent cookies and network access to execute commands as root on a clustered device via the database service.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76466",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2024-10441",
+      "vendor": "Synology",
+      "product": "DiskStation Manager (DSM)",
+      "name": "Synology DiskStation Manager (DSM) Improper Encoding or Escaping of Output Vulnerability",
+      "added": "2026-11-18",
+      "ransomware": "Known",
+      "desc": "Synology DSM contains an improper encoding or escaping of output vulnerability in the system plugin daemon in Synology BeeStation OS (BSM) that could allow a remote attacker to execute arbitrary code via unspecified vectors.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-10441",
+      "source": "CISA KEV"
+    }
+  ],
+  "nvd": [
+    {
+      "cve": "CVE-2026-117593",
+      "score": 9.1,
+      "published": "2026-11-24",
+      "desc": "Weak Password Recovery Mechanism for Forgotten Password vulnerability in ITG Bilgisayar Teknoloji Grubu Tic. Ltd. Şti. VSRM allows Password Recovery Exploitation. This issue affects vSRM: from v14.08.3 before v14.08.5.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117593",
+      "source": "NVD",
+      "similar": 1
+    },
+    {
+      "cve": "CVE-2026-119582",
+      "score": 9.8,
+      "published": "2026-11-24",
+      "desc": "Improper neutralization of special elements used in an SQL command ('SQL injection') vulnerability in ITG Bilgisayar Teknoloji Grubu Tic. Ltd. Şti. VSRM allows SQL Injection. This issue affects vSRM: from v14.08.3 before v14.08.5.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119582",
+      "source": "NVD",
+      "similar": 1
+    },
+    {
+      "cve": "CVE-2026-135788",
+      "score": 9.9,
+      "published": "2026-11-24",
+      "desc": "A weakness has been identified in D-Link DIR-X1860 4.5.2. Affected by this vulnerability is an unknown functionality of the file /usr/sbin/anweb. Executing a manipulation can lead to os command injection. It is possible to launch the attack remotely. The exploit has been made available to the public and could be used for attacks.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-135788",
+      "source": "NVD",
+      "similar": 1
+    },
+    {
+      "cve": "CVE-2026-135789",
+      "score": 9.1,
+      "published": "2026-11-24",
+      "desc": "A security vulnerability has been detected in D-Link R95 101B06. Affected by this issue is the function GetBluetoothAdapterSettings/GetBluetoothBloodPressure/GetBluetoothDeviceList/GetBluetoothScanDeviceList/SetBluetoothAdapterSettings/SetBluetoothUnpairDevice/SetTriggerBluetoothScan/SetBluetoothPairDevice of the file /bin/ssi of the component DHMAPI SOAP Handler. The manipulation of the argument ",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-135789",
+      "source": "NVD",
+      "similar": 1
+    },
+    {
+      "cve": "CVE-2026-135790",
+      "score": 9.9,
+      "published": "2026-11-24",
+      "desc": "A vulnerability was detected in Panabit Smart Application Gateway TANGr7p10. This affects an unknown part of the file /cgi-bin/dashboard/ajax_chart_dump. The manipulation of the argument isntmeye results in os command injection. The attack can be launched remotely. The exploit is now public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-135790",
+      "source": "NVD",
+      "similar": 1
+    },
+    {
+      "cve": "CVE-2026-136184",
+      "score": 9.6,
+      "published": "2026-11-24",
+      "desc": "compose-farm 0.19.0 before 1.22.0 contains a cross-site WebSocket hijacking and cross-site request forgery vulnerability because its unauthenticated web UI performs no Origin validation. Malicious websites visited by users can open /ws/shell/{host} or /ws/exec sockets, or abuse unquoted service parameters and PUT /api/console/file, to execute commands on all managed hosts.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-136184",
+      "source": "NVD",
+      "similar": 1
+    },
+    {
+      "cve": "CVE-2026-123342",
+      "score": 9.9,
+      "published": "2026-11-24",
+      "desc": "Adobe Campaign Classic (ACC) is affected by an Improper Control of Generation of Code ('Code Injection') vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged attacker could exploit this vulnerability to execute arbitrary code. Exploitation of this issue does not require user interaction. Scope is changed.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123342",
+      "source": "NVD",
+      "similar": 4
+    }
+  ],
+  "news": [
+    {
+      "title": "Hackers Compromise 24 Check Point Management Servers in Suspected AI-Driven Attack Campaign",
+      "url": "https://thehackernews.com/2026/11/hackers-compromise-24-check-point.html",
+      "date": "Wed, 25 Nov 2026 12:20:19",
+      "feed": "The Hacker News",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "Com-Affiliated Hackers Hijack Cloud Accounts via Vishing for Data Theft and Extortion",
+      "url": "https://thehackernews.com/2026/11/com-affiliated-hackers-hijack-cloud.html",
+      "date": "Wed, 25 Nov 2026 12:07:06",
+      "feed": "The Hacker News",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "WordPress Blocks Six Backdoored WP Connect Plugins Before Malicious Releases Go Live",
+      "url": "https://thehackernews.com/2026/11/wordpress-blocks-six-backdoored-wp.html",
+      "date": "Wed, 25 Nov 2026 11:51:12",
+      "feed": "The Hacker News",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "Iran-Aligned Volant Manticore Uses IPFS-Based KuboShell Backdoor in Espionage Campaigns",
+      "url": "https://thehackernews.com/2026/11/iran-aligned-volant-manticore-uses-ipfs.html",
+      "date": "Tue, 24 Nov 2026 22:24:07",
+      "feed": "The Hacker News",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "VMware vCenter Hit by Another Critical 9.8-Rated Auth Bypass Flaw After Zero-Day Exploitation",
+      "url": "https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html",
+      "date": "Tue, 24 Nov 2026 18:58:26",
+      "feed": "The Hacker News",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "AI攻破安全厂商，锅在一把没回收的密钥",
+      "url": "https://www.anquanke.com/post/id/316541",
+      "date": "2026-11-25 11:03:57",
+      "feed": "安全客",
+      "lang": "zh",
+      "source": "RSS"
+    },
+    {
+      "title": "科技云报到：Agent 上生产，七成的账不在模型上",
+      "url": "https://www.anquanke.com/post/id/316523",
+      "date": "2026-11-23 10:01:35",
+      "feed": "安全客",
+      "lang": "zh",
+      "source": "RSS"
+    },
+    {
+      "title": "德国把网络威胁拉到最高档，理由就四个字：智能体 AI",
+      "url": "https://www.anquanke.com/post/id/316536",
+      "date": "2026-11-23 09:51:25",
+      "feed": "安全客",
+      "lang": "zh",
+      "source": "RSS"
+    },
+    {
+      "title": "全球第九的超算被黑，丢的是 4224 把 SSH 私钥",
+      "url": "https://www.anquanke.com/post/id/316533",
+      "date": "2026-11-23 09:29:02",
+      "feed": "安全客",
+      "lang": "zh",
+      "source": "RSS"
+    },
+    {
+      "title": "内核全版本中招，AI帮着补上了利用链",
+      "url": "https://www.anquanke.com/post/id/316528",
+      "date": "2026-11-20 17:42:20",
+      "feed": "安全客",
+      "lang": "zh",
+      "source": "RSS"
+    },
+    {
+      "title": "CTO of ‘RansomwareHelp’ Indicted for Wire Fraud",
+      "url": "https://krebsonsecurity.com/2026/11/cto-of-ransomwarehelp-indicted-for-wire-fraud/",
+      "date": "Sat, 21 Nov 2026 00:36:39",
+      "feed": "Krebs on Security",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "Attackers Used Optimizely to A/B Test Malware on Top Websites",
+      "url": "https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/",
+      "date": "Wed, 18 Nov 2026 02:52:04",
+      "feed": "Krebs on Security",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "Who Runs the Ransomware Group Qilin?",
+      "url": "https://krebsonsecurity.com/2026/11/who-runs-the-ransomware-group-qilin/",
+      "date": "Wed, 11 Nov 2026 18:06:01",
+      "feed": "Krebs on Security",
+      "lang": "en",
+      "source": "RSS"
+    }
+  ]
+}

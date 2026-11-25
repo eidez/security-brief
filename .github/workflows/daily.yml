@@ -1,0 +1,59 @@
+name: 每日网安与 AI 前沿简报
+
+on:
+  schedule:
+    # UTC 00:00 = 北京时间 08:00
+    - cron: "0 0 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write   # 回写当日数据
+  pages: write      # 发布 Pages
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 抓取 + 判断 + 渲染
+        env:
+          # 在仓库 Settings → Secrets → Actions 里配置；不配也能跑（摘要兜底）
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          export TZ=Asia/Shanghai
+          DATE=$(date +%F)
+          echo "这次生成的日期：$DATE"
+          python brief.py all --date "$DATE"
+          echo "DATE=$DATE" >> "$GITHUB_ENV"
+
+      - name: 回写当日数据与页面
+        run: |
+          git config user.name  "brief-bot"
+          git config user.email "brief-bot@users.noreply.github.com"
+          git add data site
+          git diff --staged --quiet || git commit -m "chore(brief): ${{ env.DATE }}"
+          git push || echo "无可推送内容"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

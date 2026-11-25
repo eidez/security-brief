@@ -1,0 +1,147 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>网安与 AI 前沿简报 · 2026-11-25</title><style>
+:root{--bg:#fbfaf7;--fg:#1d1d1f;--muted:#6b6b70;--line:#e2ded5;--accent:#8a1c1c;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+     font-family:"Georgia","Songti SC","SimSun",serif;line-height:1.75}
+.wrap{max-width:860px;margin:0 auto;padding:56px 28px 96px}
+.masthead{border-bottom:3px double var(--line);padding-bottom:18px;margin-bottom:28px}
+.kicker{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:12px;
+        letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{font-size:34px;margin:10px 0 8px;line-height:1.25}
+.meta{font-family:system-ui,sans-serif;font-size:13px;color:var(--muted)}
+h2{font-size:19px;margin:44px 0 6px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h2 .num{color:var(--accent);margin-right:8px;font-family:system-ui,sans-serif}
+.lead{font-size:15px;color:#333;margin:6px 0 18px}
+.item{margin:0 0 22px;padding:0 0 18px;border-bottom:1px dotted var(--line)}
+.item:last-child{border-bottom:none}
+.item h3{font-size:16.5px;margin:0 0 4px;line-height:1.5;font-weight:700}
+.item h3 a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--accent)}
+.byline{font-family:system-ui,sans-serif;font-size:12px;color:var(--muted);margin:0 0 8px}
+.tldr{font-size:14.5px;margin:6px 0}
+.why{font-size:14px;color:#3a3a3c;background:var(--card);border-left:3px solid var(--accent);
+     padding:9px 13px;margin:8px 0}
+.why b{font-weight:700}
+.tag{display:inline-block;font-family:system-ui,sans-serif;font-size:11px;letter-spacing:.04em;
+     background:#f0ece3;color:#5a5348;border-radius:3px;padding:1px 7px;margin-right:6px}
+.cve{font-family:ui-monospace,Consolas,monospace;font-size:13px;white-space:nowrap}
+td.date{white-space:nowrap;font-family:system-ui,sans-serif;font-size:12.5px;color:#555}
+table{width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;font-size:13px;margin:10px 0 18px}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.05em}
+.score{font-family:system-ui,sans-serif;font-size:13px;background:var(--card);
+       border:1px solid var(--line);padding:12px 16px;margin:18px 0;color:#444}
+ul.trends{margin:8px 0 0 0;padding-left:20px}
+ul.trends li{margin-bottom:8px;font-size:14.5px}
+footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);
+       font-family:system-ui,sans-serif;font-size:12px;color:var(--muted)}
+a{color:var(--accent)}
+</style></head><body><div class="wrap">
+<div class="masthead">
+  <div class="kicker">Security &amp; AI Frontier Daily</div>
+  <h1>网安与 AI 前沿简报</h1>
+  <div class="meta">2026-11-25 ｜ 网络空间安全 · AI 安全交叉 ｜ 生成于 2026-11-25 16:29</div>
+</div>
+<h2><span class="num">01</span>今日速览</h2>
+<ul class="trends"><li>今天最该先动手的是 VMware vCenter：CVE-2026-123890（认证绕过）已进入 CISA 在野利用清单，同时 The Hacker News 报道了另一个 9.8 分的 vCenter 认证绕过被当作零日利用——vCenter 一旦被绕过，等于整个虚拟化平面被接管。</li><li>Check Point 有 24 台管理服务器被攻陷，多家报道指向「AI 驱动的攻击」；安全客同日的《AI 攻破安全厂商，锅在一把没回收的密钥》讲的是同一件事的另一面——攻破点往往仍是密钥、凭据这类基础运维问题。</li><li>Drupal Core 远程代码执行与 Cisco Expressway 硬编码凭据同期进入在野利用清单，两者都是暴露在边界、且补丁常被拖延的组件，建议对照自查。</li><li>学术侧今天的主线非常集中：8 篇里 5 篇直接研究「agent 自身的攻击面」——skill 供应链、群聊隐私泄露、权限清单的最弱环、web agent 规避检测、自动打漏洞的 agent。</li></ul>
+<h2><span class="num">02</span>学术前沿</h2>
+<p class="lead">arXiv <code>cs.CR</code> 与 AI 安全交叉方向，按关键词相关度排序后人工/智能体复筛。</p>
+<div class="item">
+  <h3><a href="https://arxiv.org/abs/2611.30932v1">Carried-Over and Agent-Native Threats in the Supply Chain of LLM Agent Skills</a></h3>
+  <p class="byline"><span class="tag">cs.CR</span><span class="tag">cs.SE</span>Kaixuan Li, Wenbo Guo, Sen Chen 等 ｜ 2026-11-23 ｜ arXiv:2611.30932v1</p>
+  <p class="tldr">首个覆盖 4.8 万个 agent skill 的供应链实证：依赖带来的 CVE 大多根本打不到（仅 3.0% 可被 agent 输入触达），真正的风险是作者自己写的第一方代码，以及把 skill 参数交给 shell 执行。</p>
+  <div class="why"><b>为什么值得看：</b>结论反直觉且可执行——49.6% 的可解析依赖技能依赖带已知 CVE 的版本，且 78.3% 是「发布即已脆弱」，但这些 CVE 只有 3% 可达；相反 22 个抽样第一方缺陷里有 21 个被端到端打通。也就是说，按依赖告警排序做安全治理基本是白忙，应该优先治第一方代码，并禁止运行时把参数过 shell。</div>
+</div>
+<div class="item">
+  <h3><a href="https://arxiv.org/abs/2611.33030v1">SALSA: Sampling Adversarial Suffixes from Learned Distributions for LLM Safety Assessment</a></h3>
+  <p class="byline"><span class="tag">cs.CL</span><span class="tag">cs.CR</span>Shivank Rajput, Himanshu Singh, A. V. Subramanyam ｜ 2026-11-24 ｜ arXiv:2611.33030v1</p>
+  <p class="tldr">把 GCG 式「对每个 prompt 现场优化后缀」换成「先学一个越狱后缀分布、再采样」，单次生成从 3.46 秒降到 0.04 秒，黑盒迁移上 GPT-3.5-Turbo 达 99%、GPT-4o 仍有 45%。</p>
+  <div class="why"><b>为什么值得看：</b>越狱正从「高成本定向攻击」变成「低成本批量探测」，防守方评估模型安全时的成本结构彻底变了。对做红队或安全评测的人，这是需要重新对齐的新基线数值（99% / 45%）。</div>
+</div>
+<div class="item">
+  <h3><a href="https://arxiv.org/abs/2611.31791v1">SwarmLeak: Does Coordination Improve Privacy Attacks on LLM Agents?</a></h3>
+  <p class="byline"><span class="tag">cs.CR</span><span class="tag">cs.CL</span>Asma Farajidizaji, Vyas Raina, Vatsal Raina 等 ｜ 2026-11-24 ｜ arXiv:2611.31791v1</p>
+  <p class="tldr">多人协作攻击并不比单人更强：24 个群聊场景下，4 人蜂群在任何 victim 上都不优于单攻击者，而换一个 victim 模型就能让泄露率从 0% 变到 99.4%。</p>
+  <div class="why"><b>为什么值得看：</b>两个可操作的结论：其一，防护资源该投在「把哪个模型放进群聊」，而不是假设对手会组团；其二，攻击者检索到受保护数据 64.3% 但真正说出来只有 0.6%，说明「检索 ≠ 披露」，在策略层做输出审查有实际空间。</div>
+</div>
+<div class="item">
+  <h3><a href="https://arxiv.org/abs/2611.31338v1">Per-Attack Blocking Hides Catalog Vulnerability: A Weakest-Link Analysis of Tool Manifests</a></h3>
+  <p class="byline"><span class="tag">cs.CR</span><span class="tag">cs.AI</span>Karthik Karunanithi ｜ 2026-11-23 ｜ arXiv:2611.31338v1</p>
+  <p class="tldr">「单次攻击拦截率 92%」是个会骗人的指标：工具目录越大，存在一条被放行的外泄路径的概率趋近 100%，200 个工具时已达 99%，组合工具毫无保护作用。</p>
+  <div class="why"><b>为什么值得看：</b>如果你给 agent 配了权限清单，不要用「拦住了多少攻击」自证安全，要按目录级漏洞率评估最弱那条策略。更麻烦的是「作者效应」：15 个模型写的策略错误高度聚簇，200 个工具的实际独立性只相当于约 5 个决策——工具数量不是安全裕度。</div>
+</div>
+<div class="item">
+  <h3><a href="https://arxiv.org/abs/2611.30590v1">POMA: Beyond Final Flags -- Process-Level Evaluation of Base LLMs in Vulnerability Exploitation</a></h3>
+  <p class="byline"><span class="tag">cs.CR</span><span class="tag">cs.SE</span>Gufeng Zhang, Yiru Zhao, Shengyu Liu 等 ｜ 2026-11-23 ｜ arXiv:2611.30590v1</p>
+  <p class="tldr">用过程级指标替代「过/不过」，在 55 道 CTF Pwn 与 10 个真实漏洞复现上测出：模型能力沿「漏洞知识 → 可执行实现 → 目标状态验证 → 失败定位 → 精确修复」逐段衰减。</p>
+  <div class="why"><b>为什么值得看：</b>以后看到「某模型能自动挖洞/打漏洞」的宣传，先分清那是 base model 的能力还是 agent 脚手架堆出来的——这篇给出了把两者拆开测量的方法，也是比「最终 flag」更有诊断价值的评测范式。</div>
+</div>
+<div class="item">
+  <h3><a href="https://arxiv.org/abs/2611.31547v1">Aftershock: Yesterday&#x27;s Linux Kernel Bugs, Tomorrow&#x27;s Android Exploits</a></h3>
+  <p class="byline"><span class="tag">cs.CR</span><span class="tag">cs.OS</span>Kareem Shehada, Zhiyun Qian ｜ 2026-11-23 ｜ arXiv:2611.31547v1</p>
+  <p class="tldr">端到端流水线把「上游 Linux 补丁 → Android 本地提权 exploit」自动化：33 个月内 152 个候选 CVE 中复现 38 个、生成 17 个独立验证的 exploit，单个约 14.3 个 agent 小时、321 美元 API 成本、90% 可靠性，Pixel 9/10 上 14 次试 12 次成功。</p>
+  <div class="why"><b>为什么值得看：</b>把攻防时间尺度量化了，这是今天最有分量的一条：攻击者以「小时 + 几百美元」为单位，而同一批漏洞打进 Pixel 的中位延迟是 181 天；更关键的是 17 个被成功利用的 CVE 里只有 3 个出现在 Android 安全公告中——「看公告打补丁」存在系统性盲区。</div>
+</div>
+<div class="item">
+  <h3><a href="https://arxiv.org/abs/2611.31129v1">FATCAT: Fault Injection Attacks Targeting Chip-level Alignment</a></h3>
+  <p class="byline"><span class="tag">cs.CR</span><span class="tag">cs.AI</span>Peter Horvath, Ilia Shumailov, Zhuoran Liu 等 ｜ 2026-11-23 ｜ arXiv:2611.31129v1</p>
+  <p class="tldr">首个用物理电磁故障注入消除模型拒答的攻击：不需要软件权限、不需要模型层访问，只需物理接触，同步到 prefill 阶段打坏 GPU 上的安全关键内存事务，在机械臂上造成危险动作。</p>
+  <div class="why"><b>为什么值得看：</b>它击穿了一个默认前提——「对齐是软件层保证」。当硬件不可信时，模型对齐不提供任何鲁棒安全保证。对机器人、边缘推理部署这是全新的威胁模型，也是把硬件容错纳入安全设计的直接理由（论文里机械臂两次试图夹住作者）。</div>
+</div>
+<div class="item">
+  <h3><a href="https://arxiv.org/abs/2611.31962v1">Are Web Agents Still Detectable? Stress-Testing Bot Defenses with Coordinated Evasion</a></h3>
+  <p class="byline"><span class="tag">cs.CR</span><span class="tag">cs.AI</span><span class="tag">cs.LG</span>Parsa Nilforushan, Gemmin Sugiura, Kourosh Hashemi 等 ｜ 2026-11-24 ｜ arXiv:2611.31962v1</p>
+  <p class="tldr">把「隐去自动化痕迹的 Chromium」与「生成式人类鼠标键盘轨迹」结合后，89% 的页面访问能绕过第三方反爬基准，比最强基线高 12 个百分点；消融显示两者缺一不可，只改一样仍会被检出。</p>
+  <div class="why"><b>为什么值得看：</b>对防守方，这是「多信号融合」的有力实证——浏览器指纹与行为特征互补，单一维度检测必然被绕过；论文还指出「动作之间的时序」仍是有效信号。对做数据采集的一方，说明通过现成 bot 检测不等于真的像人。</div>
+</div>
+<h2><span class="num">03</span>在野利用（CISA KEV）</h2>
+<p class="lead">已被确认在真实攻击中使用过的漏洞。这是"今晚就动手"优先级最高的信号。</p>
+<table><tr><th>CVE</th><th>厂商 / 产品</th><th>名称</th><th>入库</th><th>勒索利用</th></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-132224">CVE-2026-132224</a></td><td>Optimizely / Web Experimentation</td><td>Optimizely Web Experimentation External Control of Critical State Data Vulnerability</td><td class="date">2026-11-24</td><td>Unknown</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-131914">CVE-2026-131914</a></td><td>Idunno / AntiCsrf</td><td>Idunno AntiCsrf Deserialization of Untrusted Data Vulnerability</td><td class="date">2026-11-24</td><td>Unknown</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-132165">CVE-2026-132165</a></td><td>Drupal / Core</td><td>Drupal Core Remote Code Execution Vulnerability</td><td class="date">2026-11-24</td><td>Unknown</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-133968">CVE-2026-133968</a></td><td>Project MONAI / MONAI Label</td><td>Project MONAI MONAI Label Path Traversal Vulnerability</td><td class="date">2026-11-23</td><td>Unknown</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-134624">CVE-2026-134624</a></td><td>N-able / MailAssure</td><td>N-able MailAssure (SpamExperts) Server-Side Request Forgery (SSRF) Vulnerability</td><td class="date">2026-11-23</td><td>Unknown</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129448">CVE-2026-129448</a></td><td>Apache / Roller</td><td>Apache Roller Deserialization of Untrusted Data Vulnerability</td><td class="date">2026-11-20</td><td>Unknown</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-123890">CVE-2026-123890</a></td><td>Broadcom / VMware vCenter</td><td>VMWare vCenter Authentication Bypass Using an Alternate Path or Channel Vulnerability</td><td class="date">2026-11-20</td><td>Unknown</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-42884">CVE-2025-42884</a></td><td>SAP / NetWeaver</td><td>SAP NetWeaver Improper Neutralization of Special Elements in Data Query Logic Vulnerability</td><td class="date">2026-11-20</td><td>Unknown</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76466">CVE-2026-76466</a></td><td>Cisco / Expressway Series</td><td>Cisco Expressway Series Use of Hard-coded Credentials Vulnerability</td><td class="date">2026-11-20</td><td>Unknown</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-10441">CVE-2024-10441</a></td><td>Synology / DiskStation Manager (DSM)</td><td>Synology DiskStation Manager (DSM) Improper Encoding or Escaping of Output Vulnerability</td><td class="date">2026-11-18</td><td>Known</td></tr>
+</table>
+<h2><span class="num">04</span>新增高危漏洞（NVD）</h2>
+<p class="lead">过去 24 小时内公开的 Critical 级漏洞。</p>
+<table><tr><th>CVE</th><th>CVSS</th><th>摘要</th></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-117593">CVE-2026-117593</a></td><td>9.1</td><td>Weak Password Recovery Mechanism for Forgotten Password vulnerability in ITG Bilgisayar Teknoloji Grubu Tic. Ltd. Şti. VSRM allows Password Recovery Exploitation. This issue…</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-119582">CVE-2026-119582</a></td><td>9.8</td><td>Improper neutralization of special elements used in an SQL command (&#x27;SQL injection&#x27;) vulnerability in ITG Bilgisayar Teknoloji Grubu Tic. Ltd. Şti. VSRM allows SQL Injection. This…</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-135788">CVE-2026-135788</a></td><td>9.9</td><td>A weakness has been identified in D-Link DIR-X1860 4.5.2. Affected by this vulnerability is an unknown functionality of the file /usr/sbin/anweb. Executing a manipulation can lead…</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-135789">CVE-2026-135789</a></td><td>9.1</td><td>A security vulnerability has been detected in D-Link R95 101B06. Affected by this issue is the function…</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-135790">CVE-2026-135790</a></td><td>9.9</td><td>A vulnerability was detected in Panabit Smart Application Gateway TANGr7p10. This affects an unknown part of the file /cgi-bin/dashboard/ajax_chart_dump. The manipulation of the…</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-136184">CVE-2026-136184</a></td><td>9.6</td><td>compose-farm 0.19.0 before 1.22.0 contains a cross-site WebSocket hijacking and cross-site request forgery vulnerability because its unauthenticated web UI performs no Origin…</td></tr>
+<tr><td class="cve"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-123342">CVE-2026-123342</a></td><td>9.9</td><td>Adobe Campaign Classic (ACC) is affected by an Improper Control of Generation of Code (&#x27;Code Injection&#x27;) vulnerability that could result in arbitrary code execution in the context… <b style="white-space:nowrap">（同日同类 4 条）</b></td></tr>
+</table>
+<h2><span class="num">05</span>行业动态</h2>
+<table><tr><th>标题</th><th>来源</th></tr>
+<tr><td><a href="https://thehackernews.com/2026/11/hackers-compromise-24-check-point.html">Hackers Compromise 24 Check Point Management Servers in Suspected AI-Driven Attack Campaign</a></td><td>The Hacker News</td></tr>
+<tr><td><a href="https://thehackernews.com/2026/11/com-affiliated-hackers-hijack-cloud.html">Com-Affiliated Hackers Hijack Cloud Accounts via Vishing for Data Theft and Extortion</a></td><td>The Hacker News</td></tr>
+<tr><td><a href="https://thehackernews.com/2026/11/wordpress-blocks-six-backdoored-wp.html">WordPress Blocks Six Backdoored WP Connect Plugins Before Malicious Releases Go Live</a></td><td>The Hacker News</td></tr>
+<tr><td><a href="https://thehackernews.com/2026/11/iran-aligned-volant-manticore-uses-ipfs.html">Iran-Aligned Volant Manticore Uses IPFS-Based KuboShell Backdoor in Espionage Campaigns</a></td><td>The Hacker News</td></tr>
+<tr><td><a href="https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html">VMware vCenter Hit by Another Critical 9.8-Rated Auth Bypass Flaw After Zero-Day Exploitation</a></td><td>The Hacker News</td></tr>
+<tr><td><a href="https://www.anquanke.com/post/id/316541">AI攻破安全厂商，锅在一把没回收的密钥</a></td><td>安全客</td></tr>
+<tr><td><a href="https://www.anquanke.com/post/id/316523">科技云报到：Agent 上生产，七成的账不在模型上</a></td><td>安全客</td></tr>
+<tr><td><a href="https://www.anquanke.com/post/id/316536">德国把网络威胁拉到最高档，理由就四个字：智能体 AI</a></td><td>安全客</td></tr>
+<tr><td><a href="https://www.anquanke.com/post/id/316533">全球第九的超算被黑，丢的是 4224 把 SSH 私钥</a></td><td>安全客</td></tr>
+<tr><td><a href="https://www.anquanke.com/post/id/316528">内核全版本中招，AI帮着补上了利用链</a></td><td>安全客</td></tr>
+<tr><td><a href="https://krebsonsecurity.com/2026/11/cto-of-ransomwarehelp-indicted-for-wire-fraud/">CTO of ‘RansomwareHelp’ Indicted for Wire Fraud</a></td><td>Krebs on Security</td></tr>
+<tr><td><a href="https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/">Attackers Used Optimizely to A/B Test Malware on Top Websites</a></td><td>Krebs on Security</td></tr>
+<tr><td><a href="https://krebsonsecurity.com/2026/11/who-runs-the-ransomware-group-qilin/">Who Runs the Ransomware Group Qilin?</a></td><td>Krebs on Security</td></tr>
+</table>
+<h2><span class="num">06</span>趋势观察</h2>
+<p class="lead">跨条目的二次提炼：今天这一批放在一起说明了什么。</p>
+<ul class="trends"><li>「agent 作为新的攻击面」正在成为独立研究方向。今天 8 篇里 5 篇直接以 agent 为对象（skill 供应链、群聊隐私、权限清单、web agent 规避、自动利用 agent），重心明显从「模型对齐」移向「系统编排层」——而后者恰恰是工程实践中防护最薄弱的地方。</li><li>攻防时间尺度在系统性拉开。Aftershock 把「上游补丁 → Android exploit」压缩到 14 个 agent 小时、321 美元，而同一批漏洞的修复中位延迟 181 天；瓶颈已经不在技术，而在公告、评估、推送这套组织流程。</li><li>硬件与物理层重新进入威胁模型。FATCAT 用电磁故障注入绕开对齐并造成真实物理危险，说明「对齐 = 软件保证」这个前提正在被打破；机器人、边缘 AI 的部署方需要把硬件容错写进安全设计，而不是只做提示词层防护。</li></ul>
+<div class="score"><b>信息密度自评：8/10</b> —— 五类信息源的标题、作者、CVE 编号、CVSS 评分全部来自 arXiv / NIST / CISA 官方接口，事实字段零生成，可逐条回溯；扣分在于：只覆盖 cs.CR 与 AI 交叉方向的预印本，未含 USENIX Security / CCS 等顶会正式论文；KEV 与 NVD 未与本机资产比对，因此能回答「世界上出了什么事」，还不能回答「我自己的机器中没中」。</div>
+<footer>
+<p>本简报由「抓取脚本 + 智能体」生成：标题、作者、CVE 编号、CVSS 评分全部来自 arXiv / NIST / CISA 官方接口，
+LLM 仅负责撰写摘要与判断，不生成事实字段。</p>
+<p>历史归档：<a href="2026-11-25">2026-11-25</a> ·  ｜ <a href="index.html">返回首页</a></p>
+</footer></div></body></html>

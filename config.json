@@ -1,0 +1,22 @@
+{
+  "arxiv": {
+    "categories": ["cs.CR", "cs.AI", "cs.CL", "cs.LG"],
+    "cr_max_results": 80,
+    "ai_max_results": 80,
+    "top_n": 8,
+    "security_keywords": [
+      "attack", "adversarial", "jailbreak", "prompt injection", "backdoor",
+      "malware", "vulnerability", "exploit", "privacy", "leak", "poison",
+      "supply chain", "fingerprint", "authentication", "cryptograph",
+      "intrusion", "phishing", "fuzz", "sandbox", "watermark", "guardrail",
+      "safety", "threat", "evasion", "membership inference"
+    ]
+  },
+  "kev": { "days": 14, "max": 10 },
+  "nvd": { "hours": 24, "severity": "CRITICAL", "max": 10 },
+  "rss": [
+    { "name": "The Hacker News", "url": "https://feeds.feedburner.com/TheHackersNews", "limit": 5, "lang": "en" },
+    { "name": "安全客", "url": "https://api.anquanke.com/data/v1/rss", "limit": 5, "lang": "zh" },
+    { "name": "Krebs on Security", "url": "https://krebsonsecurity.com/feed/", "limit": 3, "lang": "en" }
+  ]
+}
