@@ -1,0 +1,532 @@
+{
+  "date": "2026-11-28",
+  "generated_at": "2026-11-28T13:49:26+08:00",
+  "papers": [
+    {
+      "id": "2611.34340v1",
+      "title": "Poisoning Attacks to Local Differential Privacy Protocols for Dynamic Graphs",
+      "abstract": "With the increasing adoption of privacy-preserving techniques in dynamic graph analysis, local differential privacy (LDP) has become a fundamental paradigm for protecting user data in decentralized environments. However, despite its strong privacy guarantees, LDP-based dynamic graph protocols remain vulnerable to data poisoning attacks through malicious data injection. In this paper, we present the first systematic study of data poisoning attacks against privacy-preserving dynamic graphs under the LDP framework. Considering the temporal evolution of dynamic graphs, we identify key challenges in attack design and evaluation, including how to schedule attack resources across time and how to measure cumulative attack impact. To address these challenges, we introduce an absolute gain metric to quantify the overall deviation of graph statistical metrics before and after attacks across time. Based on this metric, we further propose a unified poisoning attack framework for dynamic graphs, which consists of target node selection, dynamic fake node scale scheduling, and fake edge injection. Within this framework, we design a temporal enhanced attack (TEA) strategy that dynamically schedules attack resources to maximize attack effectiveness, along with two baseline strategies, equal-scale attack (ESA) and random-scale attack (RSA), for comparison. Extensive experiments on real-world and synthetic datasets demonstrate that the proposed attacks can significantly degrade the accuracy of graph metric estimation for target nodes.",
+      "published": "2026-11-25",
+      "authors": [
+        "Shang Liu",
+        "Yuhan Bao",
+        "Hongbin Zhao",
+        "Yanmei Zhang",
+        "Guan Yuan",
+        "Yang Cao"
+      ],
+      "categories": [
+        "cs.CR"
+      ],
+      "url": "https://arxiv.org/abs/2611.34340v1",
+      "source": "arXiv",
+      "score": 16
+    },
+    {
+      "id": "2611.33030v1",
+      "title": "SALSA: Sampling Adversarial Suffixes from Learned Distributions for LLM Safety Assessment",
+      "abstract": "Large language models (LLMs) remain vulnerable to jailbreak attacks, where adversaries append optimized suffixes to otherwise benign looking prompts to bypass safety alignment. Existing optimization-based GCG-style attacks can be effective, but they are expensive at inference time, and suffer from poor transfer. We present, SALSA, a generative framework that learns a distribution over jailbreak suffixes from optimization-derived attack corpora. Once trained, the model supports efficient sampling-based attacks. On open-source targets, it achieves attack success rates comparable to state-of-the-art optimization baselines, while reducing generation time from 3.46s to 0.04s per prompt. In black-box transfer, it remains highly effective against proprietary systems, including 99% ASR on GPT-3.5-Turbo, and reaches 45% ASR on the substantially harder GPT-4o, more than doubling the strongest baseline at an equal sampling budget. We further offer an intuition for why generative sampling can preserve high attack success, when the learned suffix distribution is close to the distribution of optimization outputs. Overall, our results show that learning adversarial suffix distributions yields a scalable, and practically efficient foundation for continuous LLM vulnerability discovery.",
+      "published": "2026-11-24",
+      "authors": [
+        "Shivank Rajput",
+        "Himanshu Singh",
+        "A. V. Subramanyam"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.CR"
+      ],
+      "url": "https://arxiv.org/abs/2611.33030v1",
+      "source": "arXiv",
+      "score": 15
+    },
+    {
+      "id": "2611.33231v1",
+      "title": "A comprehensive survey of deep face verification systems adversarial attacks and defense strategies",
+      "abstract": "Face Verification (FV) systems have exhibited remarkable performance in verification tasks and have consequently garnered extensive adoption across various applications, from identity duplication to authentication in mobile payments. However, the surge in popularity of face verification has raised concerns about potential vulnerabilities in the face of adversarial attacks. These concerns originate from the fact that advanced FV systems, which rely on deep neural networks, have recently demonstrated susceptibility to crafted input samples known as adversarial examples. Although imperceptible to human observers, adversarial examples can deceive deep neural networks during the testing and deployment phases. These vulnerabilities raised significant concerns about the deployment of deep neural networks in safety-critical contexts, prompting extensive investigations into adversarial attacks and corresponding defense strategies. This comprehensive survey provides a comprehensive overview of recent advances in deep face verification, encompassing a broad spectrum of topics such as algorithmic designs, database utilization, protocols, and application scenarios. Furthermore, we conduct an in-depth examination of state-of-the-art algorithms to generate adversarial examples and the defense mechanisms devised to mitigate such adversarial threats.",
+      "published": "2026-11-24",
+      "authors": [
+        "Sohair Kilany",
+        "Ahmed Mahfouz"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.CR"
+      ],
+      "url": "https://arxiv.org/abs/2611.33231v1",
+      "source": "arXiv",
+      "score": 15
+    },
+    {
+      "id": "2611.31791v1",
+      "title": "SwarmLeak: Does Coordination Improve Privacy Attacks on LLM Agents?",
+      "abstract": "LLM agents increasingly collaborate in group chats while holding tool access to confidential records, which makes the shared chat an attack surface. It remains unclear whether several colluding attackers extract such information more effectively than one. We introduce SwarmLeak, a red-teaming dataset of 24 synthetic group-chat scenarios across healthcare, law, finance, and software engineering, where attackers pose as colleagues to make a victim agent post protected fields despite an explicit confidentiality policy. With GLM 5.2 attacking five victim models through seven conversational strategies, we compare one attacker with a swarm of four sharing a private channel, matching scenarios, strategies, and a 200,000-token budget that also covers swarm coordination. Swarms show no advantage: a single attacker matches or exceeds them on every victim, and the share of runs leaking any field differs between conditions by at most 14.3 percentage points, whereas changing the victim shifts it from 0% to 99.4%. On the two most vulnerable models, nearly every run leaks under both conditions, but single attackers expose more of the record at first disclosure (85.4% vs. 68.1% of protected fields on Nemotron 3.5 Lightning). Four of the five victims leaked despite the policy. GLM 5.2 retrieved protected data in 64.3% of individual-attack runs and leaked in 0.6%: retrieval does not imply disclosure, but in high-stakes settings even one leaked field can identify a patient or client. At equal budgets, a larger red team is not automatically a stronger one; the victim model matters far more.",
+      "published": "2026-11-24",
+      "authors": [
+        "Asma Farajidizaji",
+        "Vyas Raina",
+        "Vatsal Raina",
+        "Ivaxi Sheth"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.CL"
+      ],
+      "url": "https://arxiv.org/abs/2611.31791v1",
+      "source": "arXiv",
+      "score": 15
+    },
+    {
+      "id": "2611.33810v1",
+      "title": "FlipVLA: Backdoor Attacks on Vision-Language-Action(VLA) Models Only Through Bit Flips",
+      "abstract": "Vision-language-action (VLA) models generate robot actions from visual observations and language instructions in real-world environments, making malicious model tampering a potential threat to physical safety. We study whether object-triggered backdoors can be implanted through a small, fixed set of parameter bit flips without retraining. The central challenge is to make persistent weight modifications disrupt trigger-present behavior while preserving performance on non-trigger inputs. We propose FlipVLA, a two-stage selector-amplifier method that exploits existing visual features within an FC-GELU-FC structure. The selector constructs a trigger-dependent response in a selected channel, using GELU to attenuate background activity. The amplifier modifies a connected downstream weight to convert this response into an action-relevant perturbation. Channel screening and discrete bit search construct both components under a limited modification budget. Experiments on OpenVLA-OFT and GR00T N1.7 across four LIBERO suites achieve attack success rates of 90.22% to 100%, with task success decreasing by at most 1.5 percentage points on clean scenes.",
+      "published": "2026-11-25",
+      "authors": [
+        "Zexi Zhao",
+        "Zizhen Liu",
+        "Jing Justin Ye",
+        "Huawei Li"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.CR"
+      ],
+      "url": "https://arxiv.org/abs/2611.33810v1",
+      "source": "arXiv",
+      "score": 15
+    },
+    {
+      "id": "2611.33243v1",
+      "title": "Beyond the Efficiency-Efficacy Dilemma: A Critical Analysis of Transferability in Adversarial Malware Detection",
+      "abstract": "Machine Learning (ML) models are already being deployed at scale for malware detection. Therefore there is a pressing need to rigorously study adversarial robustness. To that end, we introduce the Adversarial AI Engine (AAIE): a platform for automated security stress-testing. We performed transfer attacks, via EMBER2018, against a Random Forest target. Counterintuitively, we found single-step FGSM to have the highest attack success rate (ASR) of 52.9% compared to iterative PGD with 45.2% (p < 0.002). Compared to iterative attacks which tend to overfit surrogate networks creating brittle perturbations, FGSM created more transferable examples. We benchmarked our attacks using ASR, transferability score, evasion rate, and resilience index. Through these metrics, proposed in concordance with emerging standards in AI governance, we expose shortcomings as our transferability scores peak at ~0.8 with constrained perturbations. We highlight the practical security implications of these findings and demonstrate AAIE for automated adversarial auditing.",
+      "published": "2026-11-24",
+      "authors": [
+        "Veysel Alevcan",
+        "Mohammad Furqan Ali",
+        "Teresa Sousa",
+        "Luís Miguel Campos",
+        "Christoforos Ntantogian"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "url": "https://arxiv.org/abs/2611.33243v1",
+      "source": "arXiv",
+      "score": 14
+    },
+    {
+      "id": "2611.34684v1",
+      "title": "BridgeHammer: DNN Backdoor Attack via CPU-iGPU Shared-memory Rowhammer",
+      "abstract": "Heterogeneous systems-on-chips (SoCs) share physical memory between CPUs and integrated GPUs (iGPUs), creating a path for CPU-side memory corruption to compromise the integrity of deep learning models used for iGPU inference. Implanting a backdoor that causes targeted misclassifications on trigger-bearing inputs while retaining accuracy on normal inputs requires carefully selected weight changes. However, realizing these changes presents two challenges: where to induce faults, since vulnerable DRAM locations may not contain the targeted weights, and when to intervene, since memory placement and fault injection must align with different stages of the model deployment lifecycle that involve two distinct computation domains. We present BridgeHammer, a Rowhammer-based backdoor attack that addresses these challenges by coordinating targeted weight placement before zero-copy binding for the iGPU and fault injection before inference. The iGPU then uses the corrupted model for subsequent inferences. We evaluate BridgeHammer on a heterogeneous Intel CPU-iGPU platform using OpenVINO, targeting ResNet-20, VGG-16, and ResNet-50 at both INT8 and FP32 precision. Across all six configurations, BridgeHammer achieves an 88.9% attack success rate (ASR) and 86.3% clean accuracy on average, with reliable target-page placement and bit-flip reproduction. These results demonstrate a new integrity vulnerability on heterogeneous CPU-iGPU SoCs, motivating cross-domain memory integrity protections.",
+      "published": "2026-11-25",
+      "authors": [
+        "Yufei Wang",
+        "Saion K. Roy",
+        "Yunsi Fei"
+      ],
+      "categories": [
+        "cs.CR"
+      ],
+      "url": "https://arxiv.org/abs/2611.34684v1",
+      "source": "arXiv",
+      "score": 13
+    },
+    {
+      "id": "2611.33470v1",
+      "title": "Dynamic Reasoning in Next-Gen Detection and Response: An Empirical Study of LLM Triage, Reinforcement Tuning, and Adversarial Evasion",
+      "abstract": "We present an end-to-end empirical study of dynamic reasoning in next-generation detection and response pipelines, evaluating how static classifiers, graph-based signal fusion, and large language model (LLM) triage agents perform under strict human-analyst attention budgets (Recall at B alerts/day). Across 56 reproducible experiments spanning a multi-layer enterprise-and-cloud simulator and four public datasets (SOREL-20M, BODMAS, LANL, and DARPA Transparent Computing), we test twelve architectural claims governing modern fleet-scale defense. First, we show that fleet growth halves recall at a fixed analyst budget even at negligible compute cost (<$0.0003 per million events), and that rarity-weighted graph risk propagation outperforms GraphSAGE without neural training. Second, evaluating frontier reasoning models (Gemini) and fine-tuned open-weight models (Qwen3-4B) for alert triage reveals that unconstrained LLM auto-closure eliminates 90% of false positives while silently discarding 31-44% of true attack cases. Third, post-training with Group Relative Policy Optimization (GRPO) causes severe reward hacking on unseen attack classes, suppressing up to 86% of novel attacks compared to two-epoch supervised fine-tuning. Finally, against an adaptive adversary generating plausible cover stories in benign telemetry fields, LLM triage evasion rises sharply unless gated by a deterministic policy harness prior to model invocation.",
+      "published": "2026-11-24",
+      "authors": [
+        "Jeremy Canale"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CR"
+      ],
+      "url": "https://arxiv.org/abs/2611.33470v1",
+      "source": "arXiv",
+      "score": 12
+    }
+  ],
+  "papers_cs": [
+    {
+      "id": "2611.34818v1",
+      "title": "Deep Reinforcement Learning for Multi-UAV Data Harvesting Under Variable Team Sizes and Agent Loss",
+      "abstract": "Collecting data from wireless sensors can be challenging when limited communication infrastructure prevents them from offloading their measurements. In such settings, unmanned aerial vehicles (UAVs) can exploit their mobility to harvest data locally, while coordinated UAV teams can provide efficient and redundant coverage of remote areas. Multi-agent reinforcement learning (MARL) enables such teams to learn decentralized coordination policies. However, training separate policies for different team and sensor populations is costly, and fixed-population policies may be vulnerable to agent failures. This work proposes F-MADDPG, a flexible variant of Multi-Agent Deep Deterministic Policy Gradient (MADDPG) that supports data harvesting with varying numbers of wireless sensors and UAVs. The framework also accommodates unexpected catastrophic failures that permanently remove agents during a mission. We compare F-MADDPG with a MADDPG baseline that uses multilayer perceptrons (MLPs) and evaluate training strategies based on team-size sampling and exposure to agent terminations. The results show that F-MADDPG learns across the evaluated population sizes, completes missions faster than the baseline on average, benefits from inverse-cardinality team-size sampling compared with uniform sampling, remains effective after permanent agent losses, and gains no consistent benefit from exposure to failures during training.",
+      "published": "2026-11-25",
+      "authors": [
+        "Thiago de Souza Lamenza",
+        "Bruno José Olivieri de Souza",
+        "Markus Endler"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.DC"
+      ],
+      "url": "https://arxiv.org/abs/2611.34818v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.34875v1",
+      "title": "How Much Do Coding Agents Over-Edit, and Why? An Empirical Study of Unneeded Edits in Repository-Level Agent Patches",
+      "abstract": "Agent patches are larger than developers', which is widely read as over-editing. But patch size does not say whether the extra edits are needed, what they are, or where they come from. We introduce Delta Residue Attribution (DRA), which replays agent trajectories, traces every block (unit) of the final patch to the step that wrote it, reverts each unit, and reruns the task tests to decide whether the unit is needed. We apply DRA to 7,660 resolved GitHub Copilot CLI trajectories from 18 frontier models on SWE-bench Verified (6,728) and DeepSWE (932), and grade developer patches using the same method. Agent patches do change more lines than developers'; on SWE-bench Verified the majority of extra edits add tests (61%) and documentation (13%) while on DeepSWE, most extra edits are code (58%). On both benchmarks, agents' code is on average at least as necessary as developers' (mean $NP_{code}$ 0.887 vs. 0.864 on SWE-bench Verified, where 11 of 18 models leave less unneeded code than developers, and 0.797 vs. 0.785 on DeepSWE). On average, 11% of an agent patch's code units on SWE-bench Verified are still unneeded, and 89% of those change behavior. Debug steps write almost none of the unneeded code. Code necessity differs substantially by model; it is unrelated to resolve rate on SWE-bench Verified and negatively correlated with it on DeepSWE (Spearman -0.59, p = 0.01). On SWE-bench Verified, pruning with DRA using only the tests the agent can see (its own tests and the repository's) removes the majority of unneeded code but also some needed code (67% recall, 46% precision), and 89% of pruned patches still resolve the task; asking the agent to audit its own diff is more precise but less effective (36% recall, 66% precision). We recommend that benchmarks report code necessity next to resolve rate and that over-editing be addressed through model training and harness-level pruning.",
+      "published": "2026-11-25",
+      "authors": [
+        "Aakash Goel",
+        "Benjamin Steenhoek",
+        "Yu Hu"
+      ],
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "url": "https://arxiv.org/abs/2611.34875v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.34925v1",
+      "title": "One Ocean, Many Tasks: A Data-Grounded Simulation Suite and Benchmark for Marine Robotics",
+      "abstract": "Simulation is essential for marine robotics, yet existing platforms often trade off between visually realistic worlds, high-throughput experimentation, and ocean-condition realism grounded in real data. We present OneOcean, a data-grounded simulation suite and benchmark built around a unified spatiotemporal ocean-environment product that harmonizes bathymetry with data-driven currents and tides, with optional pollution fields for cleanup-related evaluation. On top of this environment representation, OneOcean defines a task ladder spanning navigation and station-keeping under currents, waypoint and route following, depth-profile tracking, area scanning, pipeline inspection, and multi-agent coordination, including formation transit, fish protection and patrol (herding), and surface pollution localization, containment, and cleanup. The suite supports multi-agent settings with 2-10 vehicles. Our simulator supports three to six Degrees of Freedom (DoF) and produces standardized metrics and reproducible run manifests, enabling consistent aggregation across tasks, difficulties, and scaling settings. Experiments across dataset variants and scenes systematically stress planning and control under data-grounded disturbances and reveal trade-offs among heuristic baselines, Behavior Cloning (BC), and a Large Language Model (LLM)-based planner.",
+      "published": "2026-11-25",
+      "authors": [
+        "Shuaijun Liu",
+        "Qifu Wen",
+        "Xingwei Chen",
+        "Xinwen Hu",
+        "Feiyang You",
+        "Sijia Chen"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.DB"
+      ],
+      "url": "https://arxiv.org/abs/2611.34925v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.34942v1",
+      "title": "Spectrum Adaptation of AI-Native Autoencoder Communications with Transfer Learning",
+      "abstract": "End-to-end physical-layer learning replaces separate modulation, coding, and detection operations with an autoencoder (AE) that consists of a jointly trained encoder-decoder pair at the transmitter and the receiver. This paper studies AI-native communications with AEs and quantifies the sensitivity to training-test mismatch in channel models. Models trained only on an AWGN channel achieve low bit error rates (BERs) under matched conditions but degrade severely on Rayleigh fading with practical front-end impairments. To reduce the time and energy required to adapt to new channel conditions, we propose a low-latency transfer-learning procedure that starts from an AWGN-pretrained system and fine-tunes only a small subset of transmitter and receiver layers while freezing the remainder. We further formulate layer selection as a budget-constrained optimization problem that identifies the most informative parameters to update during adaptation. This preserves the learned signal geometry and the deep decision structure while adapting lightweight front ends to fading- and impairment-induced mixing. For AE communications, we show that partial updates remove the mismatch-induced error floor and approach the BER of fully retrained models. We provide a layer-wise study and quantify resource-performance trade-offs, showing that modest adaptation substantially reduces BER while cutting training time, multiply-accumulate (MAC) operations, energy consumption, and the fraction of updated parameters for resource-efficient implementation.",
+      "published": "2026-11-25",
+      "authors": [
+        "Yalin E. Sagduyu",
+        "Tugba Erpek"
+      ],
+      "categories": [
+        "cs.NI",
+        "cs.AI",
+        "eess.SP"
+      ],
+      "url": "https://arxiv.org/abs/2611.34942v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.34142v1",
+      "title": "Reproducer Synthesis for AI-Reported Bugs in the Linux Kernel",
+      "abstract": "Agentic review systems are increasingly flagging suspected bugs in Linux kernel patches as textual reports. A maintainer who receives such reports needs further inspection to determine whether the report is true. The inspection requires understanding whether the bug can be triggered and, if necessary, manually constructing one. As a consequence, despite the excessive textual explanation, many reports go unanswered. In this paper, we argue that a runnable proof-of-concept (PoC) is the key information in such AI-generated kernel review reports. It is, however, challenging to automatically synthesize a valid and runnable PoC. We present ReproCue, a framework that generates PoCs for AI-generated Linux kernel reviews. ReproCue replays the historical kernel bugs and learns one reproduction finite-state-machine (FSM) per subsystem from successful runs. An FSM records the steps a reproduction goes through, together with the requirements observed at each step. Given a new review, ReproCue follows the FSM of that subsystem, adjusting the PoC and the environment as execution shows what is missing. In 100 recent AI-generated reviews, ReproCue writes PoCs for 49 of them, compared with 10 for the current agentic reproducer and 9 for the state-of-the-art directed fuzzing. Excitingly, with our generated PoCs, Linux kernel maintainers confirmed 69.4% of them, much higher than 9.3% from Sashiko where only textual explanations are included, making AI reviews more actionable in practice.",
+      "published": "2026-11-25",
+      "authors": [
+        "Xiao Wu",
+        "Yunbo Ni",
+        "Hao Sun",
+        "Yuanyuan Yuan",
+        "Shaohua Li"
+      ],
+      "categories": [
+        "cs.OS",
+        "cs.AI",
+        "cs.SE"
+      ],
+      "url": "https://arxiv.org/abs/2611.34142v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.34372v1",
+      "title": "An Efficient and Uniform CSP Solution Generator Generator",
+      "abstract": "Constraint-based random testing is a powerful technique which aims at generating random test cases to verify functional properties of a program. Its objective is to determine whether a function satisfies a given property for every possible input. This approach requires firstly defining the property to satisfy, then secondly to provide a generator of inputs able to feed the program with the inputs generated. Besides, function inputs often need to satisfy certain constraints to ensure the function operates correctly, which makes the crafting of such a generator a hard task. In this paper, we are interested in the problem of manufacturing a uniform and efficient generator for the solutions of a CSP. In order to do that, we propose a specialized solving method that produces a well-suited representation for random sampling. Our solving method employs a dedicated propagation scheme based on the hypergraph representation of a CSP, and a custom split heuristic called birdge-first that emphasizes the interests of our propagation scheme. The generators we build are general enough to handle a wide range of use-cases. They are moreover uniform by construction, iterative and self-improving. We present a prototype built upon the AbSolute constraint solving library and demonstrate its performances on several realistic examples.",
+      "published": "2026-11-25",
+      "authors": [
+        "Ghiles Ziat",
+        "Martin Pépin"
+      ],
+      "categories": [
+        "cs.PL"
+      ],
+      "url": "https://arxiv.org/abs/2611.34372v1",
+      "source": "arXiv",
+      "score": 0
+    },
+    {
+      "id": "2611.34945v1",
+      "title": "MidasTUI: Instant Tangible User Interfaces for Wearable Displays using Everyday Objects",
+      "abstract": "While wearable displays can bring digital workspaces anywhere, interaction remains limited by mid-air gestures that lack tactile feedback and induce fatigue, or controllers that are cumbersome to carry. We present MidasTUI, a system that instantly transforms arbitrary everyday objects into opportunistic tangible user interfaces through brief interaction demonstrations. For example, a user can slide an earbud case across a table as a mouse, enabling opportunistic interaction without carrying a dedicated input device. MidasTUI detects when a user is holding and moving an object using the wearable display camera and a Transformer-based temporal classifier. It then infers the intended input modality (e.g., slider, mouse, keypad) from hand movement and maps the tracked hand-object interaction to an application function. Our evaluations demonstrate reliable cross-object and cross-user generalization. A comparative user study further shows that grounding interaction in everyday objects reduces physical burden and improves perceived usability and control relative to mid-air interaction.",
+      "published": "2026-11-25",
+      "authors": [
+        "Wen Ying",
+        "Xuweiyi Chen",
+        "Zezhou Cheng",
+        "Seongkook Heo"
+      ],
+      "categories": [
+        "cs.HC"
+      ],
+      "url": "https://arxiv.org/abs/2611.34945v1",
+      "source": "arXiv",
+      "score": 0
+    }
+  ],
+  "kev": [
+    {
+      "cve": "CVE-2026-120705",
+      "vendor": "OSGeo",
+      "product": "GeoServer",
+      "name": "OSGeo GeoServer XML Injection Vulnerability",
+      "added": "2026-11-27",
+      "ransomware": "Unknown",
+      "desc": "OsGeo GeoServer contains an XML injection vulnerability that allows an unauthenticated remote attacker to cause the server to read local text files accessible to the GeoServer process or fetch attacker-specified HTTP or HTTPS URLs via a crafted ID parameter in the WFS 2.0 GetFeatureById stored query. This vulnerability can be chained with CVE-2026-129244, CVE-2026-129243, CVE-2026-129245, and CVE-2026-129242 to achieve unauthenticated remote code execution on an affected GeoServer instance.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120705",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-129243",
+      "vendor": "OSGeo",
+      "product": "GeoServer",
+      "name": "OSGeo GeoServer Incorrect Authorization Vulnerability",
+      "added": "2026-11-27",
+      "ransomware": "Unknown",
+      "desc": "GeoServer contains an incorrect authorization vulnerability that allows an unauthenticated remote attacker to bypass service-level role checks and invoke operations protected solely by those checks via a request with a prefixed service parameter. This vulnerability can be chained with CVE-2026-129244, CVE-2026-120705, CVE-2026-129245, and CVE-2026-129242 to achieve unauthenticated remote code execution on an affected GeoServer instance.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-129243",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-136716",
+      "vendor": "Drupal",
+      "product": "Core",
+      "name": "Drupal Core Improper Check for Unusual or Exceptional Conditions Vulnerability",
+      "added": "2026-11-27",
+      "ransomware": "Unknown",
+      "desc": "Drupal Core contains an improper check for unusual or exceptional conditions vulnerability that allows an unauthenticated remote attacker to take over a site via the exposed Drupal installer when the site is in one of the affected unusual or incomplete installation states.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-136716",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-103406",
+      "vendor": "Hewlett Packard Enterprise (HPE)",
+      "product": "Juniper Session Smart Conductor and Session Smart Router",
+      "name": "Hewlett Packard Enterprise (HPE) Juniper Session Smart Conductor and Session Smart Router OS Command Injection Vulnerability",
+      "added": "2026-11-25",
+      "ransomware": "Unknown",
+      "desc": "Hewlett Packard Enterprise (HPE) Juniper Session Smart Conductor and Session Smart Router contain an OS command injection vulnerability that could allow a remote attacker to execute arbitrary commands as root via a specially crafted salt minion ID.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103406",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-133469",
+      "vendor": "Vates",
+      "product": "Xen Orchestra",
+      "name": "Vates Xen Orchestra Improper Validation of Specified Type of Input Vulnerability",
+      "added": "2026-11-25",
+      "ransomware": "Unknown",
+      "desc": "Vates Xen Orchestra contains an improper validation of specified type of input vulnerability that could allow an unauthenticated attacker to bypass authentication and perform actions with administrative privileges via a specially crafted authentication token containing an empty JSON object.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-133469",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2025-41450",
+      "vendor": "Danfoss",
+      "product": "AK-SM 800A Series",
+      "name": "Danfoss AK-SM 800A Series Improper Authentication Vulnerability",
+      "added": "2026-11-25",
+      "ransomware": "Unknown",
+      "desc": "Danfoss AK-SM 800A Series contains an improper authentication vulnerability that could allow an attacker to generate a web report exposing sensitive information, including internal IP addresses, usernames, and store names.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-41450",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2023-25914",
+      "vendor": "Danfoss",
+      "product": "AK-SM 800A Series",
+      "name": "Danfoss AK-SM 800A Series Path Traversal Vulnerability",
+      "added": "2026-11-25",
+      "ransomware": "Unknown",
+      "desc": "Danfoss AK-SM 800A Series contains a path traversal vulnerability that could allow an attacker to access and read underlying server system files via the XML interface.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-25914",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2023-25915",
+      "vendor": "Danfoss",
+      "product": "AK-SM 800A Series",
+      "name": "Danfoss AK-SM 800A Series Improper Input Validation Vulnerability",
+      "added": "2026-11-25",
+      "ransomware": "Unknown",
+      "desc": "Danfoss AK-SM 800A Series contains an improper input validation vulnerability that could allow a remote attacker to run arbitrary commands on the affected system.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-25915",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-133324",
+      "vendor": "Mitel",
+      "product": "MiCollab",
+      "name": "Mitel MiCollab Not Failing Securely Vulnerability",
+      "added": "2026-11-25",
+      "ransomware": "Unknown",
+      "desc": "Mitel MiCollab contains a not failing securely vulnerability in the Audio, Web and Video Conferencing (AWV) component that could allow an unauthenticated attacker to bypass authentication controls and perform unauthorized actions.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-133324",
+      "source": "CISA KEV"
+    },
+    {
+      "cve": "CVE-2026-133275",
+      "vendor": "Mitel",
+      "product": "MiCollab",
+      "name": "Mitel MiCollab Unrestricted Upload of File with Dangerous Type Vulnerability",
+      "added": "2026-11-25",
+      "ransomware": "Unknown",
+      "desc": "Mitel MiCollab contains an unrestricted upload of file with dangerous type vulnerability in the Audio, Web and Video Conferencing (AWV) component due to insufficient file type validation that could allow an unauthenticated attacker to upload arbitrary files.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-133275",
+      "source": "CISA KEV"
+    }
+  ],
+  "nvd": [
+    {
+      "cve": "CVE-2026-137964",
+      "score": 9.8,
+      "published": "2026-11-27",
+      "desc": "ToolJet before 3.21.96-LTS contains a command injection vulnerability in its GitHub Actions release workflow, which interpolates the pull request title directly into a shell run block. Attackers can submit a pull request against a release branch with shell metacharacters in its title that, once merged, executes commands with a cross-repository GITHUB_TOKEN, enabling unauthorized merges into enterp",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-137964",
+      "source": "NVD",
+      "similar": 1
+    },
+    {
+      "cve": "CVE-2026-138003",
+      "score": 9.0,
+      "published": "2026-11-27",
+      "desc": "A weakness has been identified in TRENDnet TEW-751DR 1.03B01. This impacts the function FUN_0040ed90 of the file wfadev.cgi of the component UPnP/WFA. This manipulation of the argument SOAPAction causes stack-based buffer overflow. The attack is possible to be carried out remotely. A high degree of complexity is needed for the attack. The exploitability is said to be difficult. The exploit has bee",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-138003",
+      "source": "NVD",
+      "similar": 1
+    },
+    {
+      "cve": "CVE-2026-138004",
+      "score": 10.0,
+      "published": "2026-11-27",
+      "desc": "A security vulnerability has been detected in TRENDnet TEW-751DR and TEW-733GR 1.03B01. Affected is the function soapcgi_main of the file /soap.cgi of the component UPnP Igd Control Endpoint. Such manipulation of the argument service leads to os command injection. The attack may be performed from remote. The exploit has been disclosed publicly and may be used.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-138004",
+      "source": "NVD",
+      "similar": 1
+    }
+  ],
+  "news": [
+    {
+      "title": "Suspected Vietnam-Linked Hackers Target Southeast Asia in South China Sea Espionage Campaign",
+      "url": "https://thehackernews.com/2026/11/suspected-vietnam-linked-hackers-target.html",
+      "date": "Fri, 27 Nov 2026 22:06:11",
+      "feed": "The Hacker News",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "Microsoft Store App Found Delivering Vinci RAT Capable of Remote System Control",
+      "url": "https://thehackernews.com/2026/11/microsoft-store-app-found-delivering.html",
+      "date": "Fri, 27 Nov 2026 17:19:34",
+      "feed": "The Hacker News",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "How to Keep Your Security Picture Current When Attackers Move at AI Speed",
+      "url": "https://thehackernews.com/2026/11/how-to-keep-your-security-picture.html",
+      "date": "Fri, 27 Nov 2026 16:02:18",
+      "feed": "The Hacker News",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "Hackers Trojanize Official Q-Dir and DesktopOK Downloads to Deliver Remote Access Malware",
+      "url": "https://thehackernews.com/2026/11/hackers-trojanize-official-q-dir-and.html",
+      "date": "Fri, 27 Nov 2026 14:59:30",
+      "feed": "The Hacker News",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "Switzerland Confirms AI-Assisted Cyberattacks Breached Critical Infrastructure Operators",
+      "url": "https://thehackernews.com/2026/11/switzerland-confirms-ai-assisted.html",
+      "date": "Fri, 27 Nov 2026 11:34:20",
+      "feed": "The Hacker News",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "3小时、200美元，AI挖出Java致命0day",
+      "url": "https://www.anquanke.com/post/id/316568",
+      "date": "2026-11-27 18:25:40",
+      "feed": "安全客",
+      "lang": "zh",
+      "source": "RSS"
+    },
+    {
+      "title": "搜个DeepSeek微信没了，高仿官网正在批量投毒",
+      "url": "https://www.anquanke.com/post/id/316565",
+      "date": "2026-11-27 18:22:01",
+      "feed": "安全客",
+      "lang": "zh",
+      "source": "RSS"
+    },
+    {
+      "title": "AI攻破安全厂商，锅在一把没回收的密钥",
+      "url": "https://www.anquanke.com/post/id/316541",
+      "date": "2026-11-25 11:03:57",
+      "feed": "安全客",
+      "lang": "zh",
+      "source": "RSS"
+    },
+    {
+      "title": "科技云报到：Agent 上生产，七成的账不在模型上",
+      "url": "https://www.anquanke.com/post/id/316523",
+      "date": "2026-11-23 10:01:35",
+      "feed": "安全客",
+      "lang": "zh",
+      "source": "RSS"
+    },
+    {
+      "title": "德国把网络威胁拉到最高档，理由就四个字：智能体 AI",
+      "url": "https://www.anquanke.com/post/id/316536",
+      "date": "2026-11-23 09:51:25",
+      "feed": "安全客",
+      "lang": "zh",
+      "source": "RSS"
+    },
+    {
+      "title": "CTO of ‘RansomwareHelp’ Indicted for Wire Fraud",
+      "url": "https://krebsonsecurity.com/2026/11/cto-of-ransomwarehelp-indicted-for-wire-fraud/",
+      "date": "Sat, 21 Nov 2026 00:36:39",
+      "feed": "Krebs on Security",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "Attackers Used Optimizely to A/B Test Malware on Top Websites",
+      "url": "https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/",
+      "date": "Wed, 18 Nov 2026 02:52:04",
+      "feed": "Krebs on Security",
+      "lang": "en",
+      "source": "RSS"
+    },
+    {
+      "title": "Who Runs the Ransomware Group Qilin?",
+      "url": "https://krebsonsecurity.com/2026/11/who-runs-the-ransomware-group-qilin/",
+      "date": "Wed, 11 Nov 2026 18:06:01",
+      "feed": "Krebs on Security",
+      "lang": "en",
+      "source": "RSS"
+    }
+  ]
+}
